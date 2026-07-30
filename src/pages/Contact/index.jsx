@@ -2,6 +2,7 @@ import PageContent from "../../components/PageContent";
 
 export default function Contact() {
   const targetEmail = "contact@example.com";
+  
   const mailtoUrl = `mailto:${targetEmail}`;
 
   const handleButtonClick = () => {
