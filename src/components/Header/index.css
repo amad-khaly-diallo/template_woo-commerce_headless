@@ -39,13 +39,27 @@
   height: 100%;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 .header .content .menu .header-actions .header-icon {
   font-size: 6lvh;
-  margin: 0 1lvh;
+  width: 8lvh;
+}
+.header .content .menu .header-actions .header-wishlist-link {
+  position: relative;
+}
+.header .content .menu .header-actions .header-wishlist-link span {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 .header .content .menu .header-actions .autocomplete input {
   height: 100%;
+}
+.header .content .menu .header-actions button {
+  height: 8lvh;
+  margin-left: 1lvh;
+  margin-right: 1lvh;
 }
 .header .content .menu .header-close {
   display: none;

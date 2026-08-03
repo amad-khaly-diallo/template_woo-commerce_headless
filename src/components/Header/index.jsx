@@ -112,7 +112,9 @@ export default function Header() {
             </Link>
 
             {token && (
-              <button onClick={() => dispatch(logout())}>Déconnexion</button>
+              <button className="deconexion" onClick={() => dispatch(logout())}>
+                Déconnexion
+              </button>
             )}
           </div>
         </div>
