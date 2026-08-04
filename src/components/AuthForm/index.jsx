@@ -32,7 +32,7 @@ export default function AuthForm() {
     dispatch(showToast(error));
   }, [error]);
 
-  const validateLogin = (e, updatedForm) => {
+  const validateLogin = (method, updatedForm) => {
     setErrors({});
     const newErrors = {};
     !updatedForm && (updatedForm = form);
@@ -43,7 +43,7 @@ export default function AuthForm() {
       newErrors.password = "Le mot de passe est requis.";
     else if (updatedForm.password.length < 8)
       newErrors.password = " Il faut au moins 8 caractères.";
-    if (mode === "register") {
+    if (method === "register") {
       if (!updatedForm.email.trim()) {
         newErrors.email = "L'adresse e-mail est requise.";
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(updatedForm.email)) {
@@ -68,19 +68,21 @@ export default function AuthForm() {
   };
 
   const handleSubmit = (e) => {
-    e.target.className === "login" && setMode("login");
+    let method = "register";
+    e.target.className === "login" && (setMode("login"), (method = "login"));
     e.target.className === "signin" && setMode("register");
-    const validation = validateLogin();
+
+    const validation = validateLogin(method);
     if (Object.keys(validation).length > 0) {
       setErrors(validation);
       return;
     }
-    if (mode === "login") {
+    if (method === "login") {
       dispatch(
         loginThunk({ username: form.username.trim(), password: form.password }),
       );
     }
-    if (mode === "register") {
+    if (method === "register") {
       dispatch(
         registerThunk({
           username: form.username.trim(),
@@ -113,6 +115,7 @@ export default function AuthForm() {
           autoComplete="username"
           placeholder={errors.username}
           title={errors.username}
+          autoFocus
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               e.preventDefault();

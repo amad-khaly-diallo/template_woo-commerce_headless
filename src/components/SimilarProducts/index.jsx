@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../ProductCard";
+import Loader from "../Loader";
 
 export default function SimilarProducts({
   currentProduct,

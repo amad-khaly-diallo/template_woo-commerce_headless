@@ -141,20 +141,6 @@ export default function ProductDetails() {
         }}
       />
 
-      <div className="top-navigation-bar">
-        <button onClick={() => navigate(-1)}>⬅️ Retour</button>
-
-        <nav className="breadcrumb-trail">
-          <Link to="/">🏠 Accueil</Link>
-          <span className="separator">/</span>
-          <Link to="/catalogue">catalogue</Link>
-          <span className="separator">/</span>
-          <span className="current-page">
-            {decodeHtml(productToDisplay.name)}
-          </span>
-        </nav>
-      </div>
-
       <div className="product-main-card">
         <div className="product-content-grid">
           <div className="gallery-wrapper">

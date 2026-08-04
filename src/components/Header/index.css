@@ -1,5 +1,6 @@
 .header {
   position: relative;
+  width: 100%;
 }
 .header .margin {
   height: 10lvh;
@@ -11,6 +12,7 @@
   background-color: var(--bg-color);
   top: 0;
   width: 100%;
+  max-width: 260lvh;
   display: flex;
   justify-content: space-between;
   flex-direction: row;

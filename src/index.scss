@@ -31,6 +31,10 @@ body {
   background-color: var(--bg-color);
   color: var(--dark-color);
   font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+  max-width: 260lvh;
+  margin: 0 auto;
 }
 ::selection {
   background-color: var(--primary-color);
