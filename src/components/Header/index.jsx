@@ -27,16 +27,15 @@ export default function Header() {
     <header className="header">
       <div className="margin"></div>
       <div className="content">
-        <Link to="/" className="header-logo" aria-label="Ecommerce">
-          <img src={logoUrl || "./logo.webp"} alt="Logo" />
-        </Link>
-
         {/* <div
             className={`header-overlay ${menuOpen ? "open" : ""}`}
             onClick={closeMenu}
             aria-hidden="true"
           /> */}
         <div className="menu">
+          <Link to="/" className="header-logo" aria-label="Ecommerce">
+            <img src={logoUrl || "./logo.webp"} alt="Logo" />
+          </Link>
           <nav
             className={`header-nav ${menuOpen ? "open" : ""}`}
             aria-hidden={!menuOpen}

@@ -46,7 +46,15 @@ export default function Autocomplete() {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
+        onBlur={(e) => {
+          // e.relatedTarget = l'élément HTML sur lequel l'utilisateur arrive (ex: le lien <a>)
+          // On vérifie si cet élément se trouve dans notre div .autocomplete
+          const container = e.currentTarget.closest(".autocomplete");
+
+          if (!container || !container.contains(e.relatedTarget)) {
+            setFocused(false);
+          }
+        }}
         aria-label="Rechercher"
       />
 
@@ -54,10 +62,15 @@ export default function Autocomplete() {
         <ul
           className="autocomplete-suggestions"
           onMouseDown={(e) => e.preventDefault()}
+          tabIndex="-1"
         >
           {list.data.map((product) => (
             <li key={product.id}>
-              <Link to={`/product/${product.id}`} onClick={handleSelect}>
+              <Link
+                to={`/product/${product.id}`}
+                onClick={handleSelect}
+                tabIndex="-1"
+              >
                 <img
                   src={
                     product.images[0]?.src ||

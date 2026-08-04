@@ -4,6 +4,7 @@ import "./index.css";
 import { closeAuthModal } from "../../slices/authModalSlice";
 import AuthForm from "../AuthForm/";
 import ResetPasswordForm from "../ResetPasswordForm/ResetPasswordForm";
+import FocusTrap from "react-focus-trap";
 
 export default function AuthModal() {
   const dispatch = useDispatch();
@@ -14,17 +15,19 @@ export default function AuthModal() {
   const close = () => dispatch(closeAuthModal());
 
   return (
-    <div className="auth-overlay" onClick={close}>
-      <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
-        <button
-          className="auth-modal__close"
-          onClick={close}
-          aria-label="Close"
-        >
-          ✕
-        </button>
-        {view === "login" ? <AuthForm /> : <ResetPasswordForm />}
+    <FocusTrap>
+      <div className="auth-overlay" onClick={close}>
+        <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
+          <button
+            className="auth-modal__close"
+            onClick={close}
+            aria-label="Close"
+          >
+            ✕
+          </button>
+          {view === "login" ? <AuthForm /> : <ResetPasswordForm />}
+        </div>
       </div>
-    </div>
+    </FocusTrap>
   );
 }
