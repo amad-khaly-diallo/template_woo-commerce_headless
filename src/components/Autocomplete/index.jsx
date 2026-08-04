@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilters } from "../../slices/filtersSlice";
 import {
@@ -10,6 +10,7 @@ import "./index.css";
 import { decodeHtml } from "../../utils/decodeHtml";
 
 export default function Autocomplete() {
+  const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const search = useSelector((state) => state.filters.search);
@@ -22,7 +23,18 @@ export default function Autocomplete() {
   }, [filters, dispatch]);
 
   const handleChange = (e) => {
-    dispatch(setFilters({ search: e.target.value }));
+    if (location.pathname !== "/catalogue") {
+      dispatch(
+        setFilters({
+          category: "",
+          min_price: "",
+          max_price: "",
+          search: e.target.value,
+        }),
+      );
+    } else {
+      dispatch(setFilters({ search: e.target.value }));
+    }
   };
 
   const handleSelect = () => {
@@ -46,14 +58,8 @@ export default function Autocomplete() {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         onFocus={() => setFocused(true)}
-        onBlur={(e) => {
-          // e.relatedTarget = l'élément HTML sur lequel l'utilisateur arrive (ex: le lien <a>)
-          // On vérifie si cet élément se trouve dans notre div .autocomplete
-          const container = e.currentTarget.closest(".autocomplete");
-
-          if (!container || !container.contains(e.relatedTarget)) {
-            setFocused(false);
-          }
+        onBlur={() => {
+          setFocused(false);
         }}
         aria-label="Rechercher"
       />

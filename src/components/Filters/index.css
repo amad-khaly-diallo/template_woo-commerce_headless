@@ -1,0 +1,22 @@
+.filters {
+  position: relative;
+}
+.filters .margin {
+  height: 10lvh;
+}
+.filters .content {
+  position: fixed;
+  z-index: 10;
+  top: 10lvh;
+  max-width: 260lvh;
+  background-color: var(--bg-color);
+  height: 10lvh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+.filters .content * {
+  margin: auto;
+}/*# sourceMappingURL=index.css.map */

@@ -36,7 +36,7 @@ export default function BlogPostComponent() {
         type="article"
       />
 
-      <h1>{singlePost.titleText}</h1>
+      <h2>{singlePost.titleText}</h2>
       <p className="blog-post-date">
         {new Date(singlePost.date).toLocaleDateString("fr-FR", {
           day: "numeric",

@@ -14,13 +14,13 @@ export default function PageContent({ slug }) {
   }, [dispatch, slug]);
 
   if (!page && error) return <p>{error}</p>;
-  if (!page || loading) return <Loader size="lg"/>;
+  if (!page || loading) return <Loader size="lg" />;
 
   const title = page.title ?? "";
   const content = page.content ?? "";
   return (
     <div>
-      <h1 dangerouslySetInnerHTML={{ __html: title.rendered }} />
+      <h2 dangerouslySetInnerHTML={{ __html: title.rendered }} />
       <div dangerouslySetInnerHTML={{ __html: content.rendered }} />
     </div>
   );
