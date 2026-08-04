@@ -249,10 +249,14 @@ a {
   font-family: var(--font-body);
   color: var(--primary-color);
   text-decoration: none;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
+  display: inline-block;
 }
 a:hover {
   opacity: 1;
+}
+a:hover:not(.product-link) {
+  transform: scale(1.1);
 }
 @media screen and (aspect-ratio > 1/1) {
   a {

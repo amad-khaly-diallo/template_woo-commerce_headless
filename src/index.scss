@@ -195,9 +195,13 @@ a {
   font-family: var(--font-body);
   color: var(--primary-color);
   text-decoration: none;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
+  display: inline-block;
   &:hover {
     opacity: 1;
+    &:not(.product-link) {
+      transform: scale(1.1);
+    }
   }
   @media screen and (aspect-ratio > 1/1) {
     font-size: 1.5vw;
@@ -206,6 +210,9 @@ a {
     font-size: 3.5lvh;
   }
 }
+// select {
+//   margin-left: 2lvh;
+// }
 span {
   font-size: 4.5vw;
   font-family: var(--font-body);

@@ -56,9 +56,9 @@ export default function ProductCard({ product }) {
   return (
     <div className="product-card">
       {/* TEmporally Button: wishlist testing */}
-      <WishlistButton product={product} />
-      <Link to={"/product/" + product.slug}>
-        <p dangerouslySetInnerHTML={{ __html: product.name || "-" }} />
+      <WishlistButton product={product} className="wishlist-button" />
+      <Link to={"/product/" + product.slug} className="product-link">
+        <h4 dangerouslySetInnerHTML={{ __html: product.name || "-" }} />
         <p>Marque: {product.brands?.[0]?.name}</p>
         <img
           src={
@@ -89,28 +89,33 @@ export default function ProductCard({ product }) {
             product.prices.currency_symbol}
         </p>
       ) : null} */}
+      <div className="description">
+        <span>
+          <span>Prix: </span>
+          <span dangerouslySetInnerHTML={{ __html: product.price_html }} />
+          {product.is_in_stock ? <p>En stock</p> : <p>Rupture de stock</p>}
+        </span>
 
-      <span>
-        <p>Prix:</p>
-        <p dangerouslySetInnerHTML={{ __html: product.price_html }}></p>
-      </span>
-
-      {product.is_in_stock ? <p>En stock</p> : <p>Rupture de stock</p>}
-      {product.attributes?.map((attribute) => (
-        <div key={attribute.name}>
-          <label htmlFor={attribute.name}>{attribute.name}</label>
-          <select
-            name={attribute.name}
-            onChange={(e) => changeVariation(attribute.name, e.target.value)}
-          >
-            {attribute.terms.map((term) => (
-              <option key={term.name} value={term.name}>
-                {term.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      ))}
+        <span>
+          {product.attributes?.map((attribute) => (
+            <div key={attribute.name}>
+              <label htmlFor={attribute.name}>{attribute.name}</label>
+              <select
+                name={attribute.name}
+                onChange={(e) =>
+                  changeVariation(attribute.name, e.target.value)
+                }
+              >
+                {attribute.terms.map((term) => (
+                  <option key={term.name} value={term.name}>
+                    {term.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          ))}
+        </span>
+      </div>
       {checkInStock(product) ? (
         <button
           onClick={() => addProduct(product.id, 1, itemVariation, product.name)}
