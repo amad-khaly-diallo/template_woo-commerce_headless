@@ -20,10 +20,10 @@
   transform: translateY(-5px);
   box-shadow: 0 4px 8px rgba(77, 107, 218, 0.534);
 }
-@media (min-width: 768px) {
+@media screen and (aspect-ratio > 1/1) {
   .product-card {
-    width: 23%;
-    margin: 0.8vw;
+    width: 30%;
+    margin: 0.8%;
     margin-top: 5vw;
   }
 }/*# sourceMappingURL=index.css.map */

@@ -15,15 +15,13 @@
     object-fit: cover;
   }
 
-
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 8px rgba(77, 107, 218, 0.534);
   }
-    @media (min-width: 768px) {
-        width: 23%;
-        margin: 0.8vw;
-        margin-top: 5vw;
-      
-    }
+  @media screen and (aspect-ratio > 1/1) {
+    width: 30%;
+    margin: 0.8%;
+    margin-top: 5vw;
+  }
 }

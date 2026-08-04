@@ -44,7 +44,7 @@
 }
 .header .content .menu .header-actions .header-icon {
   font-size: 6lvh;
-  width: 6%;
+  min-width: 6%;
 }
 .header .content .menu .header-actions .header-wishlist-link {
   position: relative;

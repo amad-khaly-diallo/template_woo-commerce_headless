@@ -11,7 +11,7 @@ const GAP = 16;
 const STEP = CARD_WIDTH + GAP;
 const VIEWPORT_WIDTH_DESKTOP = CARD_WIDTH * 3 + GAP * 2;
 const VIEWPORT_WIDTH_MOBILE = CARD_WIDTH;
-const MOBILE_QUERY = "(max-width: 1024px)";
+const MOBILE_QUERY = "(aspect-ratio < 1/1)";
 
 export default function HomeSlider() {
   const dispatch = useDispatch();
@@ -126,7 +126,7 @@ export default function HomeSlider() {
     }
   };
 
-  if (loading) return <Loader size="lg"/>;
+  if (loading) return <Loader size="lg" />;
   if (total === 0) return null;
 
   const extended = [...products, ...products, ...products];
