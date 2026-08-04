@@ -1,3 +1,4 @@
+import "./index.css";
 import { useEffect, useState } from "react";
 import ProductCard from "../ProductCard";
 import Loader from "../Loader";

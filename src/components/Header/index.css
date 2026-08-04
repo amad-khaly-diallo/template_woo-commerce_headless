@@ -46,6 +46,14 @@
   font-size: 6lvh;
   width: 6%;
 }
+.header .content .menu .header-actions .header-wishlist-link {
+  position: relative;
+}
+.header .content .menu .header-actions .header-wishlist-link span {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 .header .content .menu .header-actions .header-cart-link {
   position: relative;
 }
