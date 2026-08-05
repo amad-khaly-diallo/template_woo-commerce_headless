@@ -4,10 +4,10 @@ import DeleteAccountButton from "../../components/DeleteAccountButton";
 
 export default function Home() {
   return (
-    <div className="home">
+    <main className="home">
       <PageContent slug="home" />
       <HomeSlider />
       <PageContent slug="a-propos" />
-    </div>
+    </main>
   );
 }
