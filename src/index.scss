@@ -1,3 +1,6 @@
+// * {
+//   outline: 1px solid red;
+// }
 @font-face {
   font-family: "InterCustom";
   src: url("./assets/fonts/Inter-Regular.ttf") format("truetype");
@@ -199,15 +202,21 @@ a {
   display: inline-block;
   &:hover {
     opacity: 1;
-    &:not(.product-link) {
-      transform: scale(1.1);
-    }
   }
   @media screen and (aspect-ratio > 1/1) {
     font-size: 1.5vw;
   }
   @media screen and (aspect-ratio > 2.6/1) {
     font-size: 3.5lvh;
+  }
+}
+li:not(.cart-product) {
+  a {
+    &:hover {
+      &:not(.product-link) {
+        transform: scale(1.1);
+      }
+    }
   }
 }
 // select {

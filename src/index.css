@@ -255,9 +255,6 @@ a {
 a:hover {
   opacity: 1;
 }
-a:hover:not(.product-link) {
-  transform: scale(1.1);
-}
 @media screen and (aspect-ratio > 1/1) {
   a {
     font-size: 1.5vw;
@@ -267,6 +264,10 @@ a:hover:not(.product-link) {
   a {
     font-size: 3.5lvh;
   }
+}
+
+li:not(.cart-product) a:hover:not(.product-link) {
+  transform: scale(1.1);
 }
 
 span {
