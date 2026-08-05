@@ -24,7 +24,9 @@ export function CartProduct({ item }) {
           }
           alt={item.name || "produit sans nom"}
         ></img>
-        <p>{item.name || "produit sans nom"}</p>
+        <h3
+          dangerouslySetInnerHTML={{ __html: item.name || "produit sans nom" }}
+        ></h3>
         <span
           dangerouslySetInnerHTML={{
             __html:

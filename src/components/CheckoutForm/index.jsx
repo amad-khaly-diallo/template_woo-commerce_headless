@@ -1,3 +1,4 @@
+import "./index.css";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
@@ -149,7 +150,7 @@ export default function CheckoutForm() {
   };
 
   return (
-    <>
+    <div className="checkout-form">
       <form onSubmit={handleSubmit}>
         <h3>Adresse de livraison</h3>
         <div>
@@ -301,7 +302,7 @@ export default function CheckoutForm() {
             />
           </label>
 
-          <div>
+          <div className="strip">
             <CardElement />
           </div>
 
@@ -319,6 +320,6 @@ export default function CheckoutForm() {
           onClose={() => setShowGuestModal(false)}
         />
       )}
-    </>
+    </div>
   );
 }
