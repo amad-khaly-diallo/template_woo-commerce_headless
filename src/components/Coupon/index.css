@@ -1,0 +1,16 @@
+.promo form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  gap: 5vw;
+  align-items: center;
+}
+.promo form input {
+  height: 100%;
+  margin: auto 0;
+}
+.promo {
+  margin-bottom: 5vw;
+  margin-left: 2vw;
+}/*# sourceMappingURL=index.css.map */

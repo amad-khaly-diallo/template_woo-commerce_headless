@@ -27,24 +27,25 @@ export function CartProduct({ item }) {
         <h3
           dangerouslySetInnerHTML={{ __html: item.name || "produit sans nom" }}
         ></h3>
-        <span
+        {/* <span
           dangerouslySetInnerHTML={{
             __html:
               item.short_description ||
               item.description ||
               "pas de description",
           }}
-        ></span>
+        ></span> */}
         {item.variation &&
           item.variation.map((variation) => (
             <p key={variation.attribute}>
               {variation.attribute} : {variation.value}
             </p>
           ))}
-        <p>{item.quantity}</p>
+        <p>Quantité: {item.quantity}</p>
         {item.prices && (
           <p>
-            {(parseInt(item.prices.price) / 100).toFixed(2) +
+            Total:{" "}
+            {(parseInt(item.prices.price * item.quantity) / 100).toFixed(2) +
               item.prices.currency_suffix}
           </p>
         )}

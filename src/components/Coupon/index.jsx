@@ -1,3 +1,4 @@
+import "./index.css";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -24,7 +25,7 @@ export default function Coupon() {
   };
 
   return (
-    <>
+    <div className="promo">
       <form onSubmit={applyCoupon}>
         <input
           placeholder="Code promo"
@@ -52,6 +53,6 @@ export default function Coupon() {
             totals.currency_suffix}
         </div>
       )}
-    </>
+    </div>
   );
 }

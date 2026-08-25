@@ -53,12 +53,25 @@ export default function ProductCard({ product }) {
     setItemVariation(defaults);
   }, [product]);
 
+  const truncateWords = (str, max = 20) => {
+    if (!str) return "-";
+    if (str.length <= max) return str;
+    const sub = str.slice(0, max);
+    const lastSpace = sub.lastIndexOf(" ");
+    const trimmed = lastSpace > 0 ? sub.slice(0, lastSpace) : sub;
+
+    return `${trimmed}...`;
+  };
+
   return (
     <div className="product-card">
-      {/* TEmporally Button: wishlist testing */}
       <WishlistButton product={product} className="wishlist-button" />
       <Link to={"/product/" + product.slug} className="product-link">
-        <h4 dangerouslySetInnerHTML={{ __html: product.name || "-" }} />
+        <h4
+          dangerouslySetInnerHTML={{
+            __html: truncateWords(product.name) || "-",
+          }}
+        />
         <p>Marque: {product.brands?.[0]?.name}</p>
         <img
           src={

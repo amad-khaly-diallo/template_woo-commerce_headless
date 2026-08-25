@@ -1,3 +1,5 @@
+import "./index.css";
+
 import { useSelector, useDispatch } from "react-redux";
 import { CartProduct } from "../CartProduct";
 import { emptyCartThunk } from "../../thunkActionsCreator/cartThunks";
@@ -10,8 +12,7 @@ export default function Cart() {
   const dispatch = useDispatch();
 
   return (
-    <>
-      <div>Votre Panier</div>
+    <div className="cart">
       <ul>
         {items.map((item) => (
           <CartProduct key={item.key} item={item} />
@@ -20,14 +21,16 @@ export default function Cart() {
 
       <Coupon />
 
-      <div>
-        Total:{" "}
-        {totals &&
-          (parseInt(totals.total_price) / 100).toFixed(2) +
-            totals.currency_suffix}
+      <div className="total">
+        <p>
+          Total:{" "}
+          {totals &&
+            (parseInt(totals.total_price) / 100).toFixed(2) +
+              totals.currency_suffix}
+        </p>
+        <button onClick={() => dispatch(emptyCartThunk())}>Vider Panier</button>
       </div>
-      <button onClick={() => dispatch(emptyCartThunk())}>Vider Panier</button>
       <StripeWrapper></StripeWrapper>
-    </>
+    </div>
   );
 }

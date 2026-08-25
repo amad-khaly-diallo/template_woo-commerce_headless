@@ -108,31 +108,35 @@ export default function Blog() {
         <p>Aucun article disponible pour le moment.</p>
       ) : (
         <div style={{ display: "grid", gap: 16 }}>
-  {filteredPosts.map((post) => (
-    <Link
-      to={`/blog/${post.slug}`}
-      key={post.id}
-      style={{ textDecoration: "none", color: "inherit" }}
-    >
-      <article style={{ border: "1px solid #e5e5e5", padding: 16, borderRadius: 8 }}>
-        <h3 style={{ marginTop: 0, marginBottom: 8 }}>
-          {post.titleText || "Sans titre"}
-        </h3>
-        <p style={{ margin: "4px 0", color: "#666", fontSize: 14 }}>
-          {formatDate(post.date)}
-        </p>
-        <p style={{ margin: "8px 0 12px", lineHeight: 1.6 }}>
-          {post.excerptText || "Lire l'article complet sur le site WordPress."}
-        </p>
-      </article>
-    </Link>
-  ))}
-</div>
+          {filteredPosts.map((post) => (
+            <Link
+              to={`/blog/${post.slug}`}
+              key={post.id}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <article
+                style={{
+                  border: "1px solid #e5e5e5",
+                  padding: 16,
+                  borderRadius: 8,
+                }}
+              >
+                <h3 style={{ marginTop: 0, marginBottom: 8 }}>
+                  {post.titleText || "Sans titre"}
+                </h3>
+                <p style={{ margin: "4px 0", color: "#666", fontSize: 14 }}>
+                  {formatDate(post.date)}
+                </p>
+                <p style={{ margin: "8px 0 12px", lineHeight: 1.6 }}>
+                  {post.excerptText || "Lire l'article complet."}
+                </p>
+              </article>
+            </Link>
+          ))}
+        </div>
       )}
 
-      {loadingMore && (
-        <Loader size="lg" />
-      )}
+      {loadingMore && <Loader size="lg" />}
       {!hasMore && !loading && (
         <p style={{ marginTop: 20 }}>Tous les articles ont été chargés.</p>
       )}

@@ -36,7 +36,7 @@ export default function BlogPostComponent() {
         type="article"
       />
 
-      <h2>{singlePost.titleText}</h2>
+      <h2 dangerouslySetInnerHTML={{ __html: singlePost.titleText }} />
       <p className="blog-post-date">
         {new Date(singlePost.date).toLocaleDateString("fr-FR", {
           day: "numeric",
