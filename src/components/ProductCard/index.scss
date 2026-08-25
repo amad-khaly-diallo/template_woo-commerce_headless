@@ -9,7 +9,7 @@
   overflow: hidden;
   padding: 0.5rem;
   position: relative;
-  height: clamp(40px, 40vw, 600px);
+  height: clamp(300px, 32vw, 600px);
 
   .wishlist-button {
     position: absolute;
@@ -21,11 +21,12 @@
   .product-link {
     display: flex;
     flex-direction: column;
-    height: 20vw;
+    height: 16vw;
 
     h4 {
       margin-right: 3lvh;
       margin-left: 1lvh;
+      margin-bottom: 0;
       /* For text clamping */
       word-break: normal;
       display: -webkit-box;
@@ -37,6 +38,7 @@
     .brand-title {
       /* color: var(--primary-color); */
       margin-left: 1lvh;
+      margin-bottom: 0;
       font-weight: bolder;
       font-style: italic;
     }
@@ -52,7 +54,6 @@
   .description {
     display: flex;
     flex-direction: row;
-    margin-top: 3lvh;
     margin-left: 1lvh;
     margin-right: 1lvh;
     height: 220px;
@@ -87,7 +88,7 @@
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(77, 107, 218, 0.534);
+    box-shadow: 0 4px 8px var(--primary-color);
   }
 
   @media screen and (aspect-ratio > 1/1) {
