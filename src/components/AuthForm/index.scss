@@ -31,7 +31,17 @@
   }
   .auth-form__buttons {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    order: 1;
+    button {
+      flex: 1;
+    }
+  }
+  .auth-form__forgot {
+    order: 2;
+    align-self: center;
+    margin-top: 1.5lvh;
   }
   button {
     margin-top: 0.5lvh;
