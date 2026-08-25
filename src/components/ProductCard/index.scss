@@ -10,31 +10,54 @@
   overflow: hidden;
   padding: 0.5rem;
   position: relative;
+  max-width: 380px;
+  min-width: 220px;
+  height: 600px;
+
   .wishlist-button {
     position: absolute;
     top: 0.5lvh;
     right: 0.5lvh;
     z-index: 1;
   }
+
   .product-link {
-    h4 {
-      margin-right: 5lvh;
-    }
     display: flex;
     flex-direction: column;
+    height: 300px;
+
+    h4 {
+      margin-right: 3lvh;
+      margin-left: 1lvh;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-title {
+      /* color: var(--primary-color); */
+      margin-left: 1lvh;
+      font-weight: bolder;
+      font-style: italic;
+    }
+
     img {
       max-width: 100%;
-      height: 30vw;
+      height: 200px;
       object-fit: cover;
       margin: auto;
     }
   }
+
   .description {
     display: flex;
     flex-direction: row;
     margin-top: 3lvh;
+    height: 220px;
+
     span {
       width: 50%;
+
       div {
         display: flex;
         flex-direction: row;
@@ -42,15 +65,19 @@
       }
     }
   }
+
   button {
+    height: 50px;
     margin: auto;
   }
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 8px rgba(77, 107, 218, 0.534);
   }
+
   @media screen and (aspect-ratio > 1/1) {
-    width: 30%;
+    /*   width: 30%; */
     margin: 0.8%;
     margin-top: 5vw;
   }

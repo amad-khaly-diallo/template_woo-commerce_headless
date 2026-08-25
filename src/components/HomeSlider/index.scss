@@ -9,6 +9,7 @@
   justify-content: center;
   //background-color: white;
   height: 65vw;
+
   .carousel-item {
     display: inline-flex;
     align-items: center;
@@ -16,6 +17,7 @@
     background-color: white;
     overflow: hidden;
   }
+
   .sl {
     transition: translate 1.2s;
     position: absolute;
@@ -25,6 +27,7 @@
     display: flex;
     justify-content: center;
   }
+
   .slMax {
     min-width: 100dvw;
     pointer-events: none;
@@ -33,9 +36,11 @@
       margin-top: 2vw;
     }
   }
+
   .arrowAndCounter {
     display: flex;
     justify-content: center;
+
     button {
       background: var(--primary-color);
       height: 100%;
@@ -43,12 +48,14 @@
       top: 0;
       padding: 0;
       border-radius: 0;
+
       img {
         width: 80%;
         margin-left: 10%;
       }
     }
   }
+
   .counter {
     position: absolute;
     z-index: 3;
@@ -60,6 +67,7 @@
     display: flex;
     flex-direction: row;
   }
+
   .arrowLeft {
     position: absolute;
     z-index: 7;
@@ -68,6 +76,7 @@
     opacity: 1;
     transition: 1s;
   }
+
   .arrowRight {
     position: absolute;
     z-index: 7;
@@ -76,35 +85,43 @@
     opacity: 1;
     transition: 1s;
   }
+
   .cooldown {
     opacity: 0;
     cursor: default;
     transition: 1s;
   }
+
   .previous {
     translate: -32%;
     transition: 1s;
   }
+
   .selected {
     translate: 0%;
     transition: 1s;
   }
+
   .next {
     translate: 32%;
     transition: 1s;
   }
+
   .start {
     translate: 32%;
     transition: 1s;
   }
+
   .beforStart {
     translate: -32%;
     transition: 1s;
   }
+
   .afterStart {
     opacity: 0;
     transition: 1s;
   }
+
   .dot {
     background-color: white;
     width: 12px;
@@ -115,12 +132,14 @@
     border: solid 3px black;
     transition: 0.4s;
   }
+
   .dotSelected {
     margin-top: 5px;
     width: 20px;
     height: 20px;
     transition: 0.4s;
   }
+
   .inner {
     display: flex;
     flex-direction: row;
@@ -128,14 +147,17 @@
     overflow: hidden;
     justify-content: center;
   }
+
   .buttonArrow {
     border: 0px;
     background: none;
   }
+
   .blinded {
     opacity: 0;
   }
 }
+
 .sliderField:hover {
   .like {
     right: -10px;
@@ -143,6 +165,7 @@
     bottom: 10px;
   }
 }
+
 .sliderField {
   .like {
     bottom: 10px;
