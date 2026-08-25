@@ -8,7 +8,7 @@
     z-index: 9;
     top: 10lvh;
     max-width: 260lvh;
-    background-color: var(--bg-color);
+    background-color: transparent;
     height: 10lvh;
     width: 100%;
     display: flex;
@@ -17,10 +17,20 @@
     align-items: center;
     gap: 3vw;
     padding: 0 5vw;
-    border-bottom: 1px solid color-mix(in srgb, var(--dark-color) 8%, transparent);
-    box-shadow: 0 4px 12px color-mix(in srgb, var(--dark-color) 4%, transparent);
+    border-bottom: 1px solid transparent;
+    box-shadow: 0 4px 12px transparent;
     overflow-x: auto;
     overflow-y: hidden;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &.open {
+      background-color: var(--bg-color);
+      border-bottom: 1px solid color-mix(in srgb, var(--dark-color) 8%, transparent);
+      box-shadow: 0 4px 12px color-mix(in srgb, var(--dark-color) 4%, transparent);
+    }
 
     &::-webkit-scrollbar {
       display: none;
@@ -39,13 +49,13 @@
       flex-shrink: 0;
       display: flex;
       align-items: center;
-      gap: 1.5vw;
+      gap: 1.2vw;
       background-color: var(--bg-color);
       color: var(--dark-color);
       border: 1px solid color-mix(in srgb, var(--dark-color) 14%, transparent);
-      border-radius: 2vw;
-      padding: 2vw 3.5vw;
-      font-size: 3.5vw;
+      border-radius: 1.6vw;
+      padding: 1.4vw 2.6vw;
+      font-size: 3vw;
       font-family: var(--font-body);
       line-height: 1.4;
       cursor: pointer;
@@ -56,20 +66,22 @@
         color 0.2s ease;
 
       @media screen and (aspect-ratio > 1/1) {
-        gap: 0.5vw;
-        border-radius: 0.5vw;
-        padding: 0.7vw 1.2vw;
-        font-size: 1vw;
+        gap: 0.4vw;
+        border-radius: 0.4vw;
+        padding: 0.5vw 0.9vw;
+        font-size: 0.85vw;
       }
       @media screen and (aspect-ratio > 2.6/1) {
-        gap: 1lvh;
-        border-radius: 1lvh;
-        padding: 1.4lvh 2.4lvh;
-        font-size: 2.6lvh;
+        gap: 0.8lvh;
+        border-radius: 0.8lvh;
+        padding: 1lvh 1.8lvh;
+        font-size: 2.2lvh;
       }
 
       svg {
         flex-shrink: 0;
+        width: 1.2em;
+        height: 1.2em;
       }
 
       &:hover {
@@ -90,19 +102,19 @@
 
       .filter-toggle-dot {
         flex-shrink: 0;
-        width: 1.6vw;
-        height: 1.6vw;
+        width: 1.4vw;
+        height: 1.4vw;
         border-radius: 50%;
         background-color: var(--danger-color);
         border: 1px solid var(--bg-color);
 
         @media screen and (aspect-ratio > 1/1) {
-          width: 0.5vw;
-          height: 0.5vw;
+          width: 0.45vw;
+          height: 0.45vw;
         }
         @media screen and (aspect-ratio > 2.6/1) {
-          width: 1lvh;
-          height: 1lvh;
+          width: 0.9lvh;
+          height: 0.9lvh;
         }
       }
     }

@@ -42,7 +42,7 @@ export default function Filters() {
   return (
     <div className="filters">
       <div className="margin"></div>
-      <div className="content">
+      <div className={`content${isOpen ? " open" : ""}`}>
         <button
           type="button"
           className={`filter-toggle${isOpen ? " active" : ""}`}
@@ -51,8 +51,6 @@ export default function Filters() {
           aria-controls="filter-controls"
         >
           <svg
-            width="18"
-            height="18"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
