@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilters } from "../../slices/filtersSlice";
 import {
@@ -7,81 +7,38 @@ import {
   fetchSearchSuggestionsThunk,
 } from "../../thunkActionsCreator/productsThunks";
 import "./index.css";
+import { decodeHtml } from "../../utils/decodeHtml";
 
 export default function Autocomplete() {
+  const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const search = useSelector((state) => state.filters.search);
-  // const [suggestions, setSuggestions] = useState([]);
   const [focused, setFocused] = useState(false);
   const timeoutRef = useRef(null);
   const filters = useSelector((state) => state.filters);
-
-  // const fetchSuggestions = async (value) => {
-  //   try {
-  //     const url = `${import.meta.env.VITE_API_URL}/wp-json/wc/store/v1/products?search=${encodeURIComponent(value)}&per_page=5`;
-  //     const response = await fetch(url, {
-  //       method: "GET",
-  //       headers: { "Content-Type": "application/json" },
-  //     });
-  //     if (!response.ok)
-  //       throw new Error(" il est Impossible de récupérer les suggestions.");
-  //     const data = await response.json();
-  //     setSuggestions(data);
-  //   } catch (error) {
-  //     setSuggestions([]);
-  //   }
-  // };
   const { list, loading, error } = useSelector((state) => state.products);
   useEffect(() => {
     dispatch(fetchProductsThunk({ ...filters, page: 1, per_page: 20 }));
   }, [filters, dispatch]);
 
-  // useEffect(() => {
-  //   if (!filters.search) {
-  //     setSuggestions([]);
-  //     return;
-  //   }
-  //   setSuggestions(list.data);
-  //   let active = true;
-  //   dispatch(
-  //     fetchSearchSuggestionsThunk({ search: filters.search, per_page: 5 }),
-  //   )
-  //     .unwrap()
-  //     .then((data) => {
-  //       if (active) setSuggestions(list.data);
-  //     })
-  //     .catch(() => {
-  //       if (active) setSuggestions([]);
-  //     });
-  //   return () => {
-  //     active = false;
-  //   };
-  // }, [filters.search, dispatch]);
-
-  // useEffect(() => {
-  //   setSuggestions(list.data);
-  //   clearTimeout(timeoutRef.current);
-
-  //   if (search.trim().length < 1) {
-  //     setSuggestions([]);
-  //     return;
-  //   }
-
-  //   timeoutRef.current = setTimeout(() => {
-  //     // fetchSuggestions(search);
-  //   }, 350);
-
-  //   return () => clearTimeout(timeoutRef.current);
-  // }, [search]);
-
   const handleChange = (e) => {
-    dispatch(setFilters({ search: e.target.value }));
+    if (location.pathname !== "/catalogue") {
+      dispatch(
+        setFilters({
+          category: "",
+          min_price: "",
+          max_price: "",
+          search: e.target.value,
+        }),
+      );
+    } else {
+      dispatch(setFilters({ search: e.target.value }));
+    }
   };
 
   const handleSelect = () => {
     dispatch(setFilters({ search: "" }));
-    //setSuggestions([]);
   };
 
   const handleKeyDown = (e) => {
@@ -101,7 +58,9 @@ export default function Autocomplete() {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
+        onBlur={() => {
+          setFocused(false);
+        }}
         aria-label="Rechercher"
       />
 
@@ -109,18 +68,23 @@ export default function Autocomplete() {
         <ul
           className="autocomplete-suggestions"
           onMouseDown={(e) => e.preventDefault()}
+          tabIndex="-1"
         >
           {list.data.map((product) => (
             <li key={product.id}>
-              <Link to={`/product/${product.id}`} onClick={handleSelect}>
+              <Link
+                to={`/product/${product.id}`}
+                onClick={handleSelect}
+                tabIndex="-1"
+              >
                 <img
                   src={
                     product.images[0]?.src ||
                     "https://placeholder.pics/svg/300/DEDEDE/555555/Placeholder"
                   }
-                  alt={product.name || "la photo du produit"}
+                  alt={decodeHtml(product.name) || "la photo du produit"}
                 />
-                <span>{product.name}</span>
+                <span>{decodeHtml(product.name)}</span>
               </Link>
             </li>
           ))}

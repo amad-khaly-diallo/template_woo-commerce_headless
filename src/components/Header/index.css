@@ -1,54 +1,88 @@
-.header-top {
+.header {
+  position: relative;
+  width: 100%;
+}
+.header .margin {
+  height: 10lvh;
+}
+.header .content {
+  height: 10lvh;
+  position: fixed;
+  z-index: 10;
+  background-color: var(--bg-color);
+  top: 0;
+  width: 100%;
+  max-width: 260lvh;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
+  flex-direction: row;
 }
-.header-left {
+.header .content .menu {
+  height: 100%;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 1rem;
+  width: 100%;
+  justify-content: space-between;
 }
-.header-burger {
+.header .content .menu .header-logo {
+  height: 100%;
+}
+.header .content .menu .header-logo img {
+  height: 100%;
+}
+.header .content .menu .header-actions {
+  justify-content: flex-end;
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.header .content .menu .header-actions * {
+  margin: 0 1%;
+}
+.header .content .menu .header-actions .header-icon {
+  font-size: 6lvh;
+  min-width: 6%;
+}
+.header .content .menu .header-actions .header-wishlist-link {
+  position: relative;
+}
+.header .content .menu .header-actions .header-wishlist-link span {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.header .content .menu .header-actions .header-cart-link {
+  position: relative;
+}
+.header .content .menu .header-actions .header-cart-link span {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.header .content .menu .header-actions .autocomplete input {
+  height: 100%;
+}
+.header .content .menu .header-actions button {
+  height: 8lvh;
+  margin-left: 1lvh;
+  margin-right: 1lvh;
+}
+.header .content .menu .header-close {
   display: none;
-  border: none;
-  background: none;
-  cursor: pointer;
 }
-.header-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-}
-.header-logo img {
-  height: 40px;
-  width: auto;
-}
-.header-nav {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin-left: 2rem;
-  margin-right: auto;
-}
-.header-nav a {
-  text-decoration: none;
-}
-.header-close {
+.header .content .menu .header-burger {
   display: none;
 }
-.header-overlay {
-  display: none;
-}
-.header-actions {
+.header .content .menu nav {
   display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 100%;
   align-items: center;
-  gap: 1rem;
 }
-.header-search {
-  padding: 0.4rem 0.8rem;
-}
-.header-icon {
-  text-decoration: none;
+.header .content .menu nav a {
+  margin: 0 3lvh;
 }/*# sourceMappingURL=index.css.map */

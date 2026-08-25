@@ -1,67 +1,91 @@
 .header {
-  &-top {
+  position: relative;
+  width: 100%;
+  .margin {
+    height: 10lvh;
+  }
+  .content {
+    height: 10lvh;
+    position: fixed;
+    z-index: 10;
+    background-color: var(--bg-color);
+    top: 0;
+    width: 100%;
+    max-width: 260lvh;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 1rem 2rem;
-  }
-
-  &-left {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  &-burger {
-    display: none;
-    border: none;
-    background: none;
-    cursor: pointer;
-  }
-
-  &-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    text-decoration: none;
-
-    img {
-      height: 40px;
-      width: auto;
+    flex-direction: row;
+    .menu {
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
+      .header-logo {
+        height: 100%;
+        img {
+          height: 100%;
+        }
+      }
+      .header-actions {
+        justify-content: flex-end;
+        width: 80%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        * {
+          margin: 0 1%;
+        }
+        .header-icon {
+          font-size: 6lvh;
+          min-width: 6%;
+        }
+        .header-wishlist-link {
+          position: relative;
+          span {
+            position: absolute;
+            top: 0;
+            right: 0;
+          }
+        }
+        .header-cart-link {
+          position: relative;
+          span {
+            position: absolute;
+            top: 0;
+            right: 0;
+          }
+        }
+        .autocomplete {
+          input {
+            height: 100%;
+          }
+        }
+        button {
+          height: 8lvh;
+          margin-left: 1lvh;
+          margin-right: 1lvh;
+        }
+      }
+      .header-close {
+        display: none;
+      }
+      .header-burger {
+        display: none;
+      }
+      nav {
+        //width: 20%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        height: 100%;
+        align-items: center;
+        a {
+          margin: 0 3lvh;
+        }
+      }
     }
-  }
-
-  &-nav {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-left: 2rem;
-    margin-right: auto;
-
-    a {
-      text-decoration: none;
-    }
-  }
-
-  &-close {
-    display: none;
-  }
-
-  &-overlay {
-    display: none;
-  }
-
-  &-actions {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  &-search {
-    padding: 0.4rem 0.8rem;
-  }
-
-  &-icon {
-    text-decoration: none;
   }
 }

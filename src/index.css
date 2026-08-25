@@ -26,14 +26,14 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   background-color: var(--bg-color);
   color: var(--dark-color);
   font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+  max-width: 260lvh;
+  margin: 0 auto;
 }
 
 ::-moz-selection {
@@ -49,8 +49,27 @@ body {
 input,
 textarea,
 select {
-  font-family: inherit;
-  color: inherit;
+  font-size: 4.5vw;
+  font-family: var(--font-body);
+  color: var(--dark-color);
+  line-height: 1.5;
+  margin-bottom: 3vw;
+}
+@media screen and (aspect-ratio > 1/1) {
+  input,
+  textarea,
+  select {
+    font-size: 1.6vw;
+    margin-bottom: 1.5vw;
+  }
+}
+@media screen and (aspect-ratio > 2.6/1) {
+  input,
+  textarea,
+  select {
+    font-size: 4lvh;
+    margin-bottom: 3lvh;
+  }
 }
 
 h1 {
@@ -172,18 +191,15 @@ p {
   font-family: var(--font-body);
   color: var(--dark-color);
   line-height: 1.5;
-  margin-bottom: 3vw;
 }
 @media screen and (aspect-ratio > 1/1) {
   p {
     font-size: 1.6vw;
-    margin-bottom: 1.5vw;
   }
 }
 @media screen and (aspect-ratio > 2.6/1) {
   p {
     font-size: 4lvh;
-    margin-bottom: 3lvh;
   }
 }
 
@@ -230,7 +246,8 @@ a {
   font-family: var(--font-body);
   color: var(--primary-color);
   text-decoration: none;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
+  display: inline-block;
 }
 a:hover {
   opacity: 1;
@@ -244,6 +261,10 @@ a:hover {
   a {
     font-size: 3.5lvh;
   }
+}
+
+li:not(.cart-product) a:hover:not(.product-link) {
+  transform: scale(1.1);
 }
 
 span {
@@ -274,7 +295,6 @@ button {
   justify-content: center;
   transition: all 0.3s ease;
   padding: 3vw 6vw;
-  margin: 1vh;
   font-size: 4.5vw;
   width: -moz-fit-content;
   width: fit-content;
@@ -296,4 +316,24 @@ button {
 }
 button:hover {
   transform: scale(1.1);
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+label {
+  font-size: 4.5vw;
+  font-family: var(--font-body);
+  color: var(--dark-color);
+}
+@media screen and (aspect-ratio > 1/1) {
+  label {
+    font-size: 1.5vw;
+  }
+}
+@media screen and (aspect-ratio > 2.6/1) {
+  label {
+    font-size: 3.5lvh;
+  }
 }/*# sourceMappingURL=index.css.map */

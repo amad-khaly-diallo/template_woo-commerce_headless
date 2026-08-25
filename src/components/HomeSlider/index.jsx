@@ -1,32 +1,24 @@
 import "./index.css";
-import { useEffect, useRef, useState } from "react";
+
+import arrowLeft from "./arrow_left.png";
+import arrowRight from "./arrow_right.png";
+
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
 import { fetchSpotlightProductsThunk } from "../../thunkActionsCreator/spotlightThunks";
-import { addProductToCart } from "../../thunkActionsCreator/cartThunks";
-import { showToast } from "../../slices/toastSlice";
 
-const CARD_WIDTH = 160;
-const GAP = 16;
-const STEP = CARD_WIDTH + GAP;
-const VIEWPORT_WIDTH = CARD_WIDTH * 3 + GAP * 2;
-const MOBILE_QUERY = "(max-width: 1024px)";
+import ProductCard from "../ProductCard";
+import Loader from "../Loader";
 
 export default function HomeSlider() {
   const dispatch = useDispatch();
   const { list, loading } = useSelector((state) => state.spotlight);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [dragOffset, setDragOffset] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-  const [transitionDuration, setTransitionDuration] = useState(0.4);
-  const [isMobile, setIsMobile] = useState(
-    () => window.matchMedia(MOBILE_QUERY).matches,
-  );
-  const dragStartX = useRef(0);
-  const lastMove = useRef({ x: 0, t: 0 });
-  const velocity = useRef(0);
-  const prevIndexRef = useRef(0);
+  const sliders = list?.data || [];
+
+  const [selected, setSelected] = useState(0);
+  const [cooldown, setCooldown] = useState(false);
+  const touchStartX = useRef(0);
 
   useEffect(() => {
     dispatch(
@@ -39,141 +31,140 @@ export default function HomeSlider() {
     );
   }, [dispatch]);
 
-  const products = list?.data || [];
-  const total = products.length;
+  const sortedSlider = useMemo(() => {
+    if (!sliders || sliders.length === 0) return [];
+    let listClone = structuredClone(sliders);
+    if (listClone.length === 2) {
+      listClone = listClone.concat(structuredClone(listClone));
+    }
+    return listClone.map((item, index) => ({
+      ...item,
+      sliderIndex: index,
+    }));
+  }, [sliders]);
 
-  const moveBy = (steps, duration = 0.4) => {
-    setCurrentIndex((i) => (((i + steps) % total) + total) % total);
-    setTransitionDuration(duration);
+  const length = sortedSlider.length;
+  const previousIndex = (selected - 1 + length) % length;
+  const nextIndex = (selected + 1) % length;
+
+  const previousPicture = () => {
+    if (cooldown || length <= 1) return;
+    setCooldown(true);
+    setSelected((prev) => (prev - 1 + length) % length);
+    setTimeout(() => setCooldown(false), 1000);
   };
-  const goNext = () => moveBy(1);
-  const goPrev = () => moveBy(-1);
 
-  useEffect(() => {
-    const mql = window.matchMedia(MOBILE_QUERY);
-    const update = () => setIsMobile(mql.matches);
-    mql.addEventListener("change", update);
-    return () => mql.removeEventListener("change", update);
-  }, []);
+  const nextPicture = () => {
+    if (cooldown || length <= 1) return;
+    setCooldown(true);
+    setSelected((prev) => (prev + 1) % length);
+    setTimeout(() => setCooldown(false), 1000);
+  };
 
-  useEffect(() => {
-    if (total === 0 || isDragging) return;
-    const interval = setInterval(goNext, 4000);
-    return () => clearInterval(interval);
-  }, [total, isDragging]);
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.changedTouches[0].screenX;
+  };
 
-  const addProduct = async (productId, name) => {
-    const result = await dispatch(
-      addProductToCart({ productId, quantity: 1, variation: [] }),
-    );
-    if (addProductToCart.fulfilled.match(result)) {
-      dispatch(showToast(`${name} ajouté au panier`));
-    } else {
-      dispatch(showToast(result.payload || "Erreur lors de l'ajout au panier"));
+  const handleTouchEnd = (e) => {
+    const touchEndX = e.changedTouches[0].screenX;
+    if (touchEndX < touchStartX.current - 50) {
+      nextPicture();
+    } else if (touchEndX > touchStartX.current + 50) {
+      previousPicture();
     }
   };
 
-  const handlePointerDown = (e) => {
-    if (e.pointerType !== "mouse" || isMobile) return;
-    setIsDragging(true);
-    dragStartX.current = e.clientX;
-    lastMove.current = { x: e.clientX, t: performance.now() };
-    velocity.current = 0;
-  };
-
-  const handlePointerMove = (e) => {
-    if (!isDragging || e.pointerType !== "mouse") return;
-    const now = performance.now();
-    const dt = now - lastMove.current.t;
-    if (dt > 0) {
-      velocity.current = (e.clientX - lastMove.current.x) / dt;
+  const getSlideProps = (index) => {
+    if (index === selected) {
+      return {
+        className: `slMax sl b${index} selected`,
+        style: { zIndex: 2, opacity: 1 },
+      };
     }
-    lastMove.current = { x: e.clientX, t: now };
-    setDragOffset(e.clientX - dragStartX.current);
+    if (index === previousIndex) {
+      return {
+        className: `slMax sl b${index} previous`,
+        style: { zIndex: 0, opacity: 1 },
+      };
+    }
+    if (index === nextIndex) {
+      return {
+        className: `slMax sl b${index} next`,
+        style: { zIndex: 2, opacity: 1 },
+      };
+    }
+    return {
+      className: `slMax sl b${index}`,
+      style: { zIndex: 0, opacity: 0 },
+    };
   };
 
-  const endDrag = () => {
-    if (!isDragging) return;
-    // On projette la position sur la vitesse relevée juste avant le
-    // relâchement : un flick rapide continue sur son élan (plus de
-    // produits, animation plus longue) même si la distance glissée est
-    // courte ; un glissement lent s'arrête net au produit le plus proche.
-    const MOMENTUM_MS = 200;
-    const projectedOffset = dragOffset + velocity.current * MOMENTUM_MS;
-    const steps = Math.round(-projectedOffset / STEP);
-    const duration = Math.min(0.3 + Math.abs(steps) * 0.1, 1.2);
-    if (steps !== 0) moveBy(steps, duration);
-    else setTransitionDuration(0.3);
-    setDragOffset(0);
-    setIsDragging(false);
-  };
+  if (loading) return <Loader />;
+  if (length === 0) return null;
 
-  if (loading) return <p>Chargement...</p>;
-  if (total === 0) return null;
-
-  // Un saut qui traverse la limite du tableau (dernier -> premier ou
-  // inversement) ne doit pas s'animer sur toute la largeur du track.
-  const wrapped = Math.abs(currentIndex - prevIndexRef.current) > total / 2;
-  prevIndexRef.current = currentIndex;
-
-  // On ajoute le dernier produit avant le premier et le premier après le
-  // dernier, pour que l'aperçu soit correct même aux deux extrémités.
-  const extended = [products[total - 1], ...products, products[0]];
-  const slotIndex = currentIndex + 1;
-
-  const baseOffset = VIEWPORT_WIDTH / 2 - CARD_WIDTH / 2 - slotIndex * STEP;
+  const isOriginallyTwoItems = sliders.length === 2;
+  const dotCount = isOriginallyTwoItems ? 2 : length;
+  const activeDotIndex = isOriginallyTwoItems ? selected % 2 : selected;
 
   return (
-    <div className="home-slider">
-      <div
-        className="home-slider-viewport"
-        style={{ width: VIEWPORT_WIDTH }}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={endDrag}
-        onPointerLeave={endDrag}
-      >
-        <div
-          className="home-slider-track"
-          style={{
-            transform: `translateX(${baseOffset + dragOffset}px)`,
-            transition:
-              isDragging || wrapped
-                ? "none"
-                : `transform ${transitionDuration}s ease-out`,
-          }}
-        >
-          {extended.map((product, index) => (
-            <div
-              key={`slot-${index}`}
-              className={
-                "home-slider-product" + (index === slotIndex ? " active" : "")
-              }
-              style={{ width: CARD_WIDTH }}
-            >
-              <Link to={"/product/" + product.slug}>
-                <img
-                  src={product.images[0]?.src}
-                  alt={product.name}
-                  draggable={false}
-                />
-                <p dangerouslySetInnerHTML={{ __html: product.name }}></p>
-                <p dangerouslySetInnerHTML={{ __html: product.price_html }}></p>
-              </Link>
-              {index === slotIndex && (
-                <button onClick={() => addProduct(product.id, product.name)}>
-                  Ajouter au panier
-                </button>
-              )}
+    <div
+      className="sliderField sliderContainer"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      <div className="inner">
+        {sortedSlider.map((slide) => {
+          const { className, style } = getSlideProps(slide.sliderIndex);
+          return (
+            <div key={slide.sliderIndex} className={className} style={style}>
+              <ProductCard product={slide} />
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
 
-      <div className="home-slider-buttons">
-        <button onClick={goPrev}>{"<"}</button>
-        <button onClick={goNext}>{">"}</button>
-      </div>
+      {length > 1 && (
+        <div className="arrowAndCounter">
+          <button
+            type="button"
+            tabIndex={0}
+            className={`buttonArrow arrowLeft ${cooldown ? "cooldown" : ""}`}
+            onClick={previousPicture}
+            aria-label="Diapositive précédente"
+          >
+            <img
+              className="leftArrow"
+              src={arrowLeft}
+              alt="flèche vers la gauche"
+            />
+          </button>
+
+          <button
+            type="button"
+            tabIndex={0}
+            className={`buttonArrow arrowRight ${cooldown ? "cooldown" : ""}`}
+            onClick={nextPicture}
+            aria-label="Diapositive suivante"
+          >
+            <img
+              className="rightArrow"
+              src={arrowRight}
+              alt="flèche vers la droite"
+            />
+          </button>
+
+          <div className="counter">
+            {Array.from({ length: dotCount }).map((_, dotIndex) => (
+              <div
+                key={dotIndex}
+                className={`dot d${dotIndex} ${
+                  dotIndex === activeDotIndex ? "dotSelected" : ""
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

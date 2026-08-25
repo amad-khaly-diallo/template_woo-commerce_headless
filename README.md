@@ -20,19 +20,10 @@ Le front utilise la variable suivante :
 
 ## Config wordpress
 
-1. creez un sous domaine api.mondomain.com pour deployer wordpress/woocommerce.
-2. créez un dossier nommé mu-plugins (au même niveau que le dossier themes et plugins).
-3. Créez un fichier nommé api-cors-configuration.php à l'intérieur, et collez ce code dedans :
-
-```php
-<?php
-if (!defined('ABSPATH')) {
-    exit;
-}
-add_filter('allowed_http_origins', function($origins) {$origins[] = 'https://mondomaine.com';
-    return $origins;
-});
-```
+1. creez un dossier /wooc sur le server pour deployer wordpress/woocommerce.
+2. installez les plug-in WooCommerce, WooCommerce Stripe Gateway, WooCommerce Tax et JWT Authentication for WP-API.
+3. renseignez le fichier wp-config.php.
+4. copiez le dossier /mu-plugins dans /wp-content.
 
 ## Wireframes
 

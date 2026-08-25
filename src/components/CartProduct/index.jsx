@@ -14,35 +14,38 @@ export function CartProduct({ item }) {
   const slug = url_array[url_array.length - 2];
 
   return (
-    <li className="cart-product-list">
+    <li className="cart-product">
       <Link to={/product/ + slug}>
         <img
           className="cart-product-thumbnail"
           src={
-            item.images?.[0]?.thumbnail ||
+            item.images?.[0]?.src ||
             "https://placeholder.pics/svg/300/DEDEDE/555555/Produit%20sans%20illustration"
           }
           alt={item.name || "produit sans nom"}
         ></img>
-        <p>{item.name || "produit sans nom"}</p>
-        <span
+        <h3
+          dangerouslySetInnerHTML={{ __html: item.name || "produit sans nom" }}
+        ></h3>
+        {/* <span
           dangerouslySetInnerHTML={{
             __html:
               item.short_description ||
               item.description ||
               "pas de description",
           }}
-        ></span>
+        ></span> */}
         {item.variation &&
           item.variation.map((variation) => (
             <p key={variation.attribute}>
               {variation.attribute} : {variation.value}
             </p>
           ))}
-        <p>{item.quantity}</p>
+        <p>Quantité: {item.quantity}</p>
         {item.prices && (
           <p>
-            {(parseInt(item.prices.price) / 100).toFixed(2) +
+            Total:{" "}
+            {(parseInt(item.prices.price * item.quantity) / 100).toFixed(2) +
               item.prices.currency_suffix}
           </p>
         )}
@@ -54,7 +57,7 @@ export function CartProduct({ item }) {
             addProductToCart({
               productId: item.id,
               quantity: 1,
-              variation: item.variation,
+              variation: item.variation?.[0] || [],
             }),
           );
         }}

@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchBlogPostBySlugThunk} from "../../thunkActionsCreator/blogThunks";
+import { fetchBlogPostBySlugThunk } from "../../thunkActionsCreator/blogThunks";
+import Loader from "../Loader";
 import Seo from "../Seo";
 import "./index.css";
 
@@ -18,11 +19,11 @@ export default function BlogPostComponent() {
   }, [slug, dispatch]);
 
   if (loadingSingle) {
-    return <div >Chargement de l'article...</div>;
+    return <Loader size="md" />;
   }
 
   if (errorSingle || !singlePost) {
-    return <div >Article introuvable.</div>;
+    return <div>Article introuvable.</div>;
   }
 
   return (
@@ -35,10 +36,12 @@ export default function BlogPostComponent() {
         type="article"
       />
 
-      <h1>{singlePost.titleText}</h1>
+      <h2 dangerouslySetInnerHTML={{ __html: singlePost.titleText }} />
       <p className="blog-post-date">
         {new Date(singlePost.date).toLocaleDateString("fr-FR", {
-          day: "numeric", month: "long", year: "numeric",
+          day: "numeric",
+          month: "long",
+          year: "numeric",
         })}
       </p>
 

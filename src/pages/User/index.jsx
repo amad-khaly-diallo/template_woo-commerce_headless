@@ -4,14 +4,16 @@ import {
   UserDisplay,
   CustomerDisplay,
 } from "../../components/Profile/UserDisplay";
+import { OrderAll } from "../../components/OrderAll";
 
 export default function Profile() {
   return (
-    <div>
+    <main>
       <UserDisplay />
       <UpdateForm />
       <CustomerDisplay />
+      <OrderAll />
       <DeleteAccountButton />
-    </div>
+    </main>
   );
 }
