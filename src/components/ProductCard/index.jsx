@@ -30,6 +30,7 @@ export default function ProductCard({ product }) {
   }
 
   function checkInStock(product) {
+    if (product.is_in_stock === false) return false; // SI LE PRODUIT A DES VARIATIONS MAIS IS IN STOCK EST FALSE
     const variation = product.variations.find((variation) =>
       variation.attributes.every(
         (attribute) => itemVariation[attribute.name] === attribute.value,
@@ -87,7 +88,11 @@ export default function ProductCard({ product }) {
         <span>
           <span>Prix: </span>
           <span dangerouslySetInnerHTML={{ __html: product.price_html }} />
-          {product.is_in_stock ? <p>En stock</p> : <p>Rupture de stock</p>}
+          {product.is_in_stock ? (
+            <p className="stock-status-available">En stock</p>
+          ) : (
+            <p className="stock-status-unavailable">Rupture de stock</p>
+          )}
         </span>
 
         <span>
