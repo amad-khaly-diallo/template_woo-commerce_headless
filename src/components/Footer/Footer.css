@@ -1,11 +1,75 @@
+.footer {
+  background-color: var(--dark-color);
+  color: var(--bg-color);
+  margin-top: auto;
+}
+
 .footer_grid {
   display: flex;
-  justify-content: space-around;
-  padding: 1rem;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 4vw 3vw;
+  gap: 2vw;
+}
+
+.footer_col {
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
+}
+
+.footer_col--brand {
+  max-width: 25vw;
+}
+
+.footer_logo {
+  height: 3vw;
+  width: auto;
+  object-fit: contain;
+}
+
+.footer_site-name {
+  font-family: var(--font-heading);
+  font-size: 1.6vw;
+  font-weight: 700;
+  color: var(--bg-color);
+  margin-bottom: 0;
+}
+
+.footer_description {
+  color: #94a3b8;
+  font-size: 1.2vw;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.footer_title {
+  font-family: var(--font-heading);
+  color: var(--bg-color);
+  font-size: 1.3vw;
+  font-weight: 700;
+  margin-bottom: 0;
 }
 
 .footer_links {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7vw;
+  margin: 0;
+}
+
+.footer_links a {
+  color: #94a3b8;
+  font-size: 1.2vw;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer_links a:hover {
+  color: var(--bg-color);
+  opacity: 1;
 }
 
 .footer_link-button {
@@ -13,8 +77,30 @@
   border: none;
   padding: 0;
   margin: 0;
-  font: inherit;
-  color: inherit;
   cursor: pointer;
-  text-decoration: none;
+  text-align: left;
+  color: #94a3b8;
+  font-family: var(--font-body);
+  font-size: 1.2vw;
+  border-radius: 0;
+  width: auto;
+  transition: color 0.2s ease;
+}
+
+.footer_link-button:hover {
+  color: var(--bg-color);
+  transform: none;
+  opacity: 1;
+}
+
+.footer_bottom {
+  border-top: 1px solid #1e293b;
+  padding: 1.5vw 6vw;
+  text-align: center;
+}
+
+.footer_bottom p {
+  color: #64748b;
+  font-size: 1vw;
+  margin: 0;
 }
