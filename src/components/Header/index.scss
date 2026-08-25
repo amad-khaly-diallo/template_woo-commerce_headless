@@ -3,6 +3,7 @@
   width: 100%;
   .margin {
     height: 10lvh;
+    transition: height 0.25s ease;
   }
   .content {
     height: 10lvh;
@@ -15,6 +16,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    transition: height 0.25s ease;
     .menu {
       height: 100%;
       display: flex;
@@ -86,6 +88,15 @@
           margin: 0 3lvh;
         }
       }
+    }
+  }
+  &.header-hidden {
+    .margin {
+      height: 0;
+    }
+    .content {
+      height: 0;
+      overflow: hidden;
     }
   }
 }

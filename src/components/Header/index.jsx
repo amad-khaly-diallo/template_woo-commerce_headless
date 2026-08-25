@@ -1,6 +1,6 @@
 import "./index.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilters } from "../../slices/filtersSlice";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ import { openAuthModal } from "../../slices/authModalSlice";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const token = useSelector((state) => state.user.token);
   const cartItems = useSelector((state) => state.cart.items);
   const wishlistItems = useSelector((state) => state.wishlist.items);
@@ -23,8 +24,27 @@ export default function Header() {
   const cartBadgeValue = cartCount > 9 ? "9+" : String(cartCount);
   const closeMenu = () => setMenuOpen(false);
 
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        setIsHidden(true);
+      } else {
+        setIsHidden(false);
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="header">
+    <header className={`header ${isHidden ? "header-hidden" : ""}`}>
       <div className="margin"></div>
       <div className="content">
         {/* <div
