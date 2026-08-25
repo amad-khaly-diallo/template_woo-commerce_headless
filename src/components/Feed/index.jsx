@@ -3,7 +3,7 @@ import "./index.css";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import Loader from "../../components/Loader"
+import Loader from "../../components/Loader";
 import { fetchProductsThunk } from "../../thunkActionsCreator/productsThunks";
 import { fetchCategoriesThunk } from "../../thunkActionsCreator/categoriesThunks";
 import ProductCard from "../ProductCard";
@@ -17,7 +17,6 @@ export default function Feed() {
   const perPage = list?.perPage || 20;
   const hasMore = items.length > 0 && items.length % perPage === 0;
   const loadMoreRef = useRef(null);
-  const feedContainerRef = useRef(null);
 
   useEffect(() => {
     if (!loadMoreRef.current || !hasMore || loading) return;
@@ -35,12 +34,10 @@ export default function Feed() {
   }, [hasMore, loading, currentPage, dispatch]);
 
   useEffect(() => {
-    if (feedContainerRef.current) {
-      feedContainerRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }, [filters]);
 
   const loadMoreProducts = () => {
@@ -57,7 +54,6 @@ export default function Feed() {
 
   return (
     <div className="feed-container">
-      <span ref={feedContainerRef}></span>
       {items.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
@@ -66,7 +62,7 @@ export default function Feed() {
           <span ref={loadMoreRef}></span>
         </div>
       )}
-      {loading && <Loader size="lg"/>}
+      {loading && <Loader size="lg" />}
     </div>
   );
 }
