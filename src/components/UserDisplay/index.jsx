@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../Loader";
-import { BillingDisplay, ShippingDisplay } from "../CustomerDisplay";
+import ShippingDisplay from "../ShippingDisplay";
+import BillingDisplay from "../BillingDisplay";
 import { fetchCurrentUserThunk } from "../../thunkActionsCreator/userThunks";
 
 export function UserDisplay() {
