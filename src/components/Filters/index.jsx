@@ -27,16 +27,24 @@ export default function Filters() {
 
   const handleCategoryChange = (e) => {
     dispatch(setFilters({ category: e.target.value, search: "" }));
+    setIsOpen(false);
   };
 
   const handleSortChange = (e) => {
     const [orderby, order] = e.target.value.split("-");
     dispatch(setFilters({ orderby, order }));
+    setIsOpen(false);
   };
 
   const handlePriceChange = (e) => {
     const { name, value } = e.target;
     dispatch(setFilters({ [name]: value }));
+  };
+
+  const handleControlsBlur = (e) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setIsOpen(false);
+    }
   };
 
   return (
@@ -67,6 +75,7 @@ export default function Filters() {
           id="filter-controls"
           className={`filter-controls${isOpen ? " open" : ""}`}
           inert={!isOpen}
+          onBlur={handleControlsBlur}
         >
           <div className="filter-controls-inner">
             <select value={filters.category} onChange={handleCategoryChange}>
