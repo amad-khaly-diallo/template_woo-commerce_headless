@@ -1,15 +1,18 @@
 import "./index.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFilters } from "../../slices/filtersSlice";
-import { useNavigate } from "react-router-dom";
 import Autocomplete from "../Autocomplete";
 import { logout } from "../../slices/userSlice";
 import { openAuthModal } from "../../slices/authModalSlice";
+import searchIcon from "./search.svg";
+import heartIcon from "./heart.svg";
+import bagIcon from "./bag.svg";
+import peopleIcon from "./people.svg";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const token = useSelector((state) => state.user.token);
   const cartItems = useSelector((state) => state.cart.items);
   const wishlistItems = useSelector((state) => state.wishlist.items);
@@ -23,8 +26,21 @@ export default function Header() {
   const cartBadgeValue = cartCount > 9 ? "9+" : String(cartCount);
   const closeMenu = () => setMenuOpen(false);
 
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const y = window.scrollY;
+      setIsHidden(y > 0 && y > lastScrollY);
+      lastScrollY = y;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="header">
+    <header className={`header ${isHidden ? "header-hidden" : ""}`}>
       <div className="margin"></div>
       <div className="content">
         {/* <div
@@ -69,12 +85,12 @@ export default function Header() {
               className="header-icon"
               aria-label="Recherche"
             >
-              🔍
+              <img src={searchIcon} alt="" className="header-icon-img" />
             </Link>
 
             {isAuthentificated ? (
               <Link to="/profile" className="header-icon" aria-label="Profil">
-                👤
+                <img src={peopleIcon} alt="" className="header-icon-img" />
               </Link>
             ) : (
               <button
@@ -83,7 +99,7 @@ export default function Header() {
                 aria-label="Profil"
                 onClick={() => dispatch(openAuthModal("login"))}
               >
-                👤
+                <img src={peopleIcon} alt="" className="header-icon-img" />
               </button>
             )}
 
@@ -92,7 +108,7 @@ export default function Header() {
               className="header-icon header-cart-link"
               aria-label={`Panier (${cartBadgeValue})`}
             >
-              🛒
+              <img src={bagIcon} alt="" className="header-icon-img" />
               {cartCount > 0 && (
                 <span className="header-cart-badge">{cartBadgeValue}</span>
               )}
@@ -102,7 +118,7 @@ export default function Header() {
               className="header-icon header-wishlist-link"
               aria-label={`Favoris (${wishlistItems.length})`}
             >
-              ❤️
+              <img src={heartIcon} alt="" className="header-icon-img" />
               {wishlistItems.length > 0 && (
                 <span className="header-cart-badge">
                   {wishlistItems.length > 9 ? "9+" : wishlistItems.length}
