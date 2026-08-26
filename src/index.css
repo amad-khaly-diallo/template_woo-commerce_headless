@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @font-face {
-  font-family: "InterCustom";
-  src: url("./assets/fonts/Inter-Regular.ttf") format("truetype");
+  font-family: "PlayfairDisplay";
+  src: url("./assets/fonts/PlayfairDisplay-Medium.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
@@ -12,14 +12,17 @@
   font-style: normal;
 }
 :root {
-  --primary-color: #2563eb;
-  --success-color: #16a34a;
-  --danger-color: #dc2626;
-  --dark-color: #0f172a;
-  --gray-color: #5f5f5f;
-  --bg-color: #f8fafc;
-  --font-body: "InterCustom", sans-serif;
-  --font-heading: "PoppinsCustom", sans-serif;
+  --primary-color: #B17979;
+  --primary-color-light: #E97575;
+  --secondary-color: #B29A72;
+  --surface-color: #F6ECE0F6;
+  --dark-color: #000000;
+  --text-color-muted: #575757;
+  --bg-color: #FDF5EA;
+  --white-color: #FFFFFF;
+  --font-body: "PoppinsCustom", sans-serif; 
+   --font-heading: "PlayfairDisplay", sans-serif;
+
 }
 
 * {
@@ -43,15 +46,7 @@ body {
   color: var(--bg-color);
 }
 
-/* Tailles de base pour les mobiles */
-input,
-textarea,
-select,
-p,
-span,
-label,
-li,
-a {
+input, textarea, select, p, span, label, li, a {
   font-size: 4vw;
   font-family: var(--font-body);
   color: var(--dark-color);
@@ -130,7 +125,7 @@ li {
 }
 
 a {
-  color: var(--primary-color);
+  color: var(--text-color-muted);
   text-decoration: none;
   transition: all 0.3s ease;
 }
