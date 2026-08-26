@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilters } from "../../slices/filtersSlice";
 import "./index.css";
@@ -19,17 +20,39 @@ export default function PriceRangeSlider() {
       ? Number(filters.max_price)
       : maxLimit;
 
+  const [draftMinPrice, setDraftMinPrice] = useState(minPrice);
+  const [draftMaxPrice, setDraftMaxPrice] = useState(maxPrice);
+
+  useEffect(() => {
+    setDraftMinPrice(minPrice);
+    setDraftMaxPrice(maxPrice);
+  }, [minPrice, maxPrice]);
+
   // Gestion des curseurs
   const handleMinRange = (e) => {
     const value = Number(e.target.value);
-    if (maxPrice - value >= priceGap) {
-      dispatch(setFilters({ min_price: value }));
+    if (draftMaxPrice - value >= priceGap) {
+      setDraftMinPrice(value);
     }
   };
 
   const handleMaxRange = (e) => {
     const value = Number(e.target.value);
-    if (value - minPrice >= priceGap) {
+    if (value - draftMinPrice >= priceGap) {
+      setDraftMaxPrice(value);
+    }
+  };
+
+  const commitMinRange = (e) => {
+    const value = Number(e.currentTarget.value);
+    if (draftMaxPrice - value >= priceGap) {
+      dispatch(setFilters({ min_price: value }));
+    }
+  };
+
+  const commitMaxRange = (e) => {
+    const value = Number(e.currentTarget.value);
+    if (value - draftMinPrice >= priceGap) {
       dispatch(setFilters({ max_price: value }));
     }
   };
@@ -44,8 +67,8 @@ export default function PriceRangeSlider() {
   };
 
   // Calcul du remplissage
-  const leftPercent = (minPrice / maxLimit) * 100;
-  const rightPercent = 100 - (maxPrice / maxLimit) * 100;
+  const leftPercent = (draftMinPrice / maxLimit) * 100;
+  const rightPercent = 100 - (draftMaxPrice / maxLimit) * 100;
 
   return (
     <div className="price-range-slider">
@@ -76,18 +99,24 @@ export default function PriceRangeSlider() {
             className="min-range"
             min={minLimit}
             max={maxLimit}
-            value={minPrice}
+            value={draftMinPrice}
             step="1"
             onChange={handleMinRange}
+            onPointerUp={commitMinRange}
+            onPointerCancel={commitMinRange}
+            onKeyUp={commitMinRange}
           />
           <input
             type="range"
             className="max-range"
             min={minLimit}
             max={maxLimit}
-            value={maxPrice}
+            value={draftMaxPrice}
             step="1"
             onChange={handleMaxRange}
+            onPointerUp={commitMaxRange}
+            onPointerCancel={commitMaxRange}
+            onKeyUp={commitMaxRange}
           />
         </div>
       </div>
