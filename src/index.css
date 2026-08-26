@@ -12,17 +12,16 @@
   font-style: normal;
 }
 :root {
-  --primary-color: #B17979;
-  --primary-color-light: #E97575;
-  --secondary-color: #B29A72;
-  --surface-color: #F6ECE0F6;
+  --primary-color: #b17979;
+  --primary-color-light: #e97575;
+  --secondary-color: #b29a72;
+  --surface-color: #f6ece0f6;
   --dark-color: #000000;
   --text-color-muted: #575757;
-  --bg-color: #FDF5EA;
-  --white-color: #FFFFFF;
-  --font-body: "PoppinsCustom", sans-serif; 
-   --font-heading: "PlayfairDisplay", sans-serif;
-
+  --bg-color: #fdf5ea;
+  --white-color: #ffffff;
+  --font-body: "PlayfairDisplay", sans-serif;
+  --font-heading: "PoppinsCustom", sans-serif;
 }
 
 * {
@@ -41,12 +40,24 @@ body {
   margin: 0 auto;
 }
 
+::-moz-selection {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+}
+
 ::selection {
   background-color: var(--primary-color);
   color: var(--bg-color);
 }
 
-input, textarea, select, p, span, label, li, a {
+input,
+textarea,
+select,
+p,
+span,
+label,
+li,
+a {
   font-size: 4vw;
   font-family: var(--font-body);
   color: var(--dark-color);
@@ -253,21 +264,22 @@ button {
   justify-content: center;
   transition: all 0.3s ease;
   padding: 3vw 6vw;
-  font-size: 4.5vw;
+  font-size: 3vw;
+  width: -moz-fit-content;
   width: fit-content;
   border-radius: 2vw;
 }
 @media screen and (aspect-ratio > 1/1) {
   button {
     padding: 1vw 2vw;
-    font-size: 1.2vw;
+    font-size: 1vw;
     border-radius: 0.5vw;
   }
 }
 @media screen and (aspect-ratio > 2.6/1) {
   button {
     padding: 1.5lvh 3lvh;
-    font-size: 1.5lvh;
+    font-size: 3lvh;
     border-radius: 1lvh;
   }
 }
