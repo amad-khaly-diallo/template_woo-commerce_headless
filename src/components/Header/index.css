@@ -1,21 +1,26 @@
+@charset "UTF-8";
 .header {
   position: relative;
   width: 100%;
 }
 .header .margin {
   height: 10lvh;
+  transition: height 0.25s ease;
 }
 .header .content {
   height: 10lvh;
   position: fixed;
   z-index: 10;
-  background-color: var(--bg-color);
+  backdrop-filter: blur(4px);
+  /* Réduit l'opacité à 50% en mélangeant avec du transparent */
+  background-color: color-mix(in srgb, var(--bg-color) 70%, transparent);
   top: 0;
   width: 100%;
   max-width: 260lvh;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  transition: height 0.25s ease;
 }
 .header .content .menu {
   height: 100%;
@@ -45,6 +50,11 @@
 .header .content .menu .header-actions .header-icon {
   font-size: 6lvh;
   min-width: 6%;
+}
+.header .content .menu .header-actions .header-icon .header-icon-img {
+  display: block;
+  width: 1em;
+  height: 1em;
 }
 .header .content .menu .header-actions .header-wishlist-link {
   position: relative;
@@ -85,4 +95,13 @@
 }
 .header .content .menu nav a {
   margin: 0 3lvh;
-}/*# sourceMappingURL=index.css.map */
+}
+.header.header-hidden .margin {
+  height: 0;
+}
+.header.header-hidden .content {
+  height: 0;
+  overflow: hidden;
+}
+
+/*# sourceMappingURL=index.css.map */

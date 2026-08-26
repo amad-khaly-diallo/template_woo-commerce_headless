@@ -37,6 +37,7 @@ export default function HomeSlider() {
     if (listClone.length === 2) {
       listClone = listClone.concat(structuredClone(listClone));
     }
+
     return listClone.map((item, index) => ({
       ...item,
       sliderIndex: index,
@@ -52,6 +53,7 @@ export default function HomeSlider() {
     setCooldown(true);
     setSelected((prev) => (prev - 1 + length) % length);
     setTimeout(() => setCooldown(false), 1000);
+    next = false;
   };
 
   const nextPicture = () => {
@@ -93,6 +95,28 @@ export default function HomeSlider() {
         style: { zIndex: 2, opacity: 1 },
       };
     }
+
+    /* SI 5 OU PLUS FAVORIS PERMETTRE NEXT NEXT ET PREV PREV */
+    if (length < 5) {
+      return {
+        className: `slMax sl b${index}`,
+        style: { zIndex: 0, opacity: 0 },
+      };
+    }
+
+    if ((previousIndex === 0 && index === length) || index < previousIndex) {
+      return {
+        className: `slMax sl b${index} prevPrev`,
+        style: { zIndex: 0, opacity: 0 },
+      };
+    }
+    if ((nextIndex === length - 1 && index === 0) || index > nextIndex) {
+      return {
+        className: `slMax sl b${index} nextNext`,
+        style: { zIndex: 0, opacity: 0 },
+      };
+    }
+
     return {
       className: `slMax sl b${index}`,
       style: { zIndex: 0, opacity: 0 },
