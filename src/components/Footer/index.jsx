@@ -1,4 +1,4 @@
-import "./Footer.css";
+import "./index.css";
 
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,9 +30,15 @@ export default function Footer() {
         <div className="footer_col">
           <h4 className="footer_title">Navigation</h4>
           <ul className="footer_links">
-            <li><Link to="/">Accueil</Link></li>
-            <li><Link to="/catalogue">Catalogue</Link></li>
-            <li><Link to="/panier">Panier</Link></li>
+            <li>
+              <Link to="/">Accueil</Link>
+            </li>
+            <li>
+              <Link to="/catalogue">Catalogue</Link>
+            </li>
+            <li>
+              <Link to="/panier">Panier</Link>
+            </li>
             {isAuthentificated ? (
               <li>
                 <button
@@ -60,16 +66,27 @@ export default function Footer() {
         <div className="footer_col">
           <h4 className="footer_title">Informations</h4>
           <ul className="footer_links">
-            <li><Link to="/cgu">CGU</Link></li>
-            <li><Link to="/cgv">CGV</Link></li>
-            <li><Link to="/mentions-legales">Mentions légales</Link></li>
-            <li><Link to="/contact">Nous contacter</Link></li>
+            <li>
+              <Link to="/cgu">CGU</Link>
+            </li>
+            <li>
+              <Link to="/cgv">CGV</Link>
+            </li>
+            <li>
+              <Link to="/mentions-legales">Mentions légales</Link>
+            </li>
+            <li>
+              <Link to="/contact">Nous contacter</Link>
+            </li>
           </ul>
         </div>
       </div>
 
       <div className="footer_bottom">
-        <p>© {new Date().getFullYear()} {siteName || "Notre boutique"}. Tous droits réservés.</p>
+        <p>
+          © {new Date().getFullYear()} {siteName || "Notre boutique"}. Tous
+          droits réservés.
+        </p>
       </div>
     </footer>
   );
