@@ -57,15 +57,6 @@ export default function PriceRangeSlider() {
     }
   };
 
-  // Gestion des champs texte
-  const handleMinInput = (e) => {
-    dispatch(setFilters({ min_price: e.target.value }));
-  };
-
-  const handleMaxInput = (e) => {
-    dispatch(setFilters({ max_price: e.target.value }));
-  };
-
   // Calcul du remplissage
   const leftPercent = (draftMinPrice / maxLimit) * 100;
   const rightPercent = 100 - (draftMaxPrice / maxLimit) * 100;
