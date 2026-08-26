@@ -98,7 +98,7 @@
   transition: 1s;
 }
 .sliderContainer .selected {
-  translate: 0%;
+  translate: 0% -5%;
   transition: 1s;
 }
 .sliderContainer .next {

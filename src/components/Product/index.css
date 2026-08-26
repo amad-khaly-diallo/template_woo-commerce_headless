@@ -130,7 +130,8 @@
 .product-details-page .gallery-wrapper .main-image-container img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .product-details-page .gallery-wrapper .thumbnail-list {
   display: flex;
@@ -158,7 +159,8 @@
 .product-details-page .gallery-wrapper .thumbnail-list .thumbnail-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .product-details-page .gallery-wrapper .thumbnail-list .thumbnail-item.active {
   border-color: var(--primary-color);
@@ -180,6 +182,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  width: -moz-fit-content;
   width: fit-content;
 }
 .product-details-page .info-wrapper .price-action-card .price-text {
