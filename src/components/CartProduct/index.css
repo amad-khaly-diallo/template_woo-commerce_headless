@@ -11,8 +11,7 @@
 }
 .cart-product-thumbnail {
   width: 20%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   margin-top: 0;
   float: left;
   margin-right: 2lvh;
