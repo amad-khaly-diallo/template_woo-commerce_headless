@@ -4,7 +4,7 @@ import { fetchCategoriesThunk } from "../../thunkActionsCreator/categoriesThunks
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsThunk } from "../../thunkActionsCreator/productsThunks";
 import { setFilters } from "../../slices/filtersSlice";
-
+import PriceRangeSlider from "../PriceRangeSlider";
 export default function Filters() {
   const dispatch = useDispatch();
   const { items: categories, loading: categoriesLoading } = useSelector(
@@ -79,6 +79,8 @@ export default function Filters() {
                 ></option>
               ))}
             </select>
+            <PriceRangeSlider />
+
             <div className="price-group">
               <input
                 type="number"
