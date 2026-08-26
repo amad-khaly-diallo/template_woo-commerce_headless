@@ -96,6 +96,7 @@ export default function PriceRangeSlider() {
             onPointerUp={commitMinRange}
             onPointerCancel={commitMinRange}
             onKeyUp={commitMinRange}
+            tabIndex="-1"
           />
           <input
             type="range"
@@ -108,6 +109,7 @@ export default function PriceRangeSlider() {
             onPointerUp={commitMaxRange}
             onPointerCancel={commitMaxRange}
             onKeyUp={commitMaxRange}
+            tabIndex="-1"
           />
         </div>
       </div>
