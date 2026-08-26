@@ -16,18 +16,17 @@
   right: 0.5lvh;
   z-index: 1;
 }
-.product-card .product-link h4 {
-  margin-right: 5lvh;
-}
 .product-card .product-link {
   display: flex;
   flex-direction: column;
 }
+.product-card .product-link h4 {
+  margin-right: 5lvh;
+}
 .product-card .product-link img {
   max-width: 100%;
   height: 30vw;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   margin: auto;
 }
 .product-card .description {

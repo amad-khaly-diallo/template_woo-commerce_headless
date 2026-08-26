@@ -236,6 +236,8 @@
   padding-left: 2vw;
   padding-right: 2vw;
   cursor: text;
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 @media screen and (aspect-ratio > 1/1) {
   .filters .content input[type=number] {
@@ -255,12 +257,6 @@
   -webkit-appearance: none;
   margin: 0;
 }
-.filters .content input[type=number] {
-  -moz-appearance: textfield;
-  appearance: textfield;
-}
 .filters .content input[type=number]::placeholder {
   color: color-mix(in srgb, var(--dark-color) 40%, transparent);
-}
-
-/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=index.css.map */

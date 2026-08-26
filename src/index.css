@@ -37,11 +37,6 @@ body {
   margin: 0 auto;
 }
 
-::-moz-selection {
-  background-color: var(--primary-color);
-  color: var(--bg-color);
-}
-
 ::selection {
   background-color: var(--primary-color);
   color: var(--bg-color);
@@ -233,7 +228,6 @@ button {
   transition: all 0.3s ease;
   padding: 3vw 6vw;
   font-size: 4.5vw;
-  width: -moz-fit-content;
   width: fit-content;
   border-radius: 2vw;
 }

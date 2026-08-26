@@ -1,6 +1,5 @@
 .sliderContainer {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -19,8 +18,7 @@
 .sliderContainer .sl {
   transition: translate 1.2s;
   position: absolute;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   top: 0;
   display: flex;
   justify-content: center;
