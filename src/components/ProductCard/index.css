@@ -55,6 +55,7 @@
 }
 .product-card .description span {
   width: 50%;
+  margin-left: 1px;
 }
 .product-card .description span div {
   display: flex;

@@ -1,9 +1,12 @@
 .wishlist-button {
-  background: none;
-  border: none;
+  border: 1px solid var(--dark-color);
   cursor: pointer;
   width: 2vw;
   height: 2vw;
+  background-color: var(--bg-color);
+  border-radius: 100%;
+  margin: auto;
+  padding: 3px;
 }
 
 .wishlist-button.active {
