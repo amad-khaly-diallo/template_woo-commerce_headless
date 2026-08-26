@@ -76,11 +76,11 @@
       font-size: 1.3vw;
 
       &-available {
-        color: rgb(0, 110, 24);
+        color: var(--success-color);
       }
 
       &-unavailable {
-        color: rgb(136, 0, 0);
+        color: var(--danger-color);
       }
     }
   }
