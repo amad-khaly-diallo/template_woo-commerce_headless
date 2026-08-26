@@ -2,11 +2,14 @@ import "./index.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFilters } from "../../slices/filtersSlice";
-import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Autocomplete from "../Autocomplete";
 import { logout } from "../../slices/userSlice";
 import { openAuthModal } from "../../slices/authModalSlice";
+import searchIcon from "./search.svg";
+import heartIcon from "./heart.svg";
+import bagIcon from "./bag.svg";
+import peopleIcon from "./people.svg";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,6 +19,7 @@ export default function Header() {
   const wishlistItems = useSelector((state) => state.wishlist.items);
   const logoUrl = useSelector((state) => state.site.logoUrl);
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
   const isAuthentificated = useSelector((state) => state.user?.token);
   const cartCount = cartItems.reduce(
     (total, item) => total + (Number(item.quantity) || 0),
@@ -26,22 +30,41 @@ export default function Header() {
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
+    let feedContainer = null;
 
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+    const updateVisibility = (currentScrollY) => {
+      if (currentScrollY <= 0) {
+        setIsHidden(false);
+      } else if (currentScrollY > lastScrollY) {
         setIsHidden(true);
-      } else {
+      } else if (currentScrollY < lastScrollY) {
         setIsHidden(false);
       }
 
       lastScrollY = currentScrollY;
     };
 
+    const handleScroll = () => {
+      updateVisibility(window.scrollY);
+    };
+
+    const handleFeedScroll = (event) => {
+      updateVisibility(event.currentTarget.scrollTop);
+    };
+
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+
+    feedContainer = document.querySelector(".feed-container");
+    feedContainer?.addEventListener("scroll", handleFeedScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      feedContainer?.removeEventListener("scroll", handleFeedScroll);
+    };
+  }, [pathname]);
 
   return (
     <header className={`header ${isHidden ? "header-hidden" : ""}`}>
@@ -89,12 +112,12 @@ export default function Header() {
               className="header-icon"
               aria-label="Recherche"
             >
-              🔍
+              <img src={searchIcon} alt="" className="header-icon-img" />
             </Link>
 
             {isAuthentificated ? (
               <Link to="/profile" className="header-icon" aria-label="Profil">
-                👤
+                <img src={peopleIcon} alt="" className="header-icon-img" />
               </Link>
             ) : (
               <button
@@ -103,7 +126,7 @@ export default function Header() {
                 aria-label="Profil"
                 onClick={() => dispatch(openAuthModal("login"))}
               >
-                👤
+                <img src={peopleIcon} alt="" className="header-icon-img" />
               </button>
             )}
 
@@ -112,7 +135,7 @@ export default function Header() {
               className="header-icon header-cart-link"
               aria-label={`Panier (${cartBadgeValue})`}
             >
-              🛒
+              <img src={bagIcon} alt="" className="header-icon-img" />
               {cartCount > 0 && (
                 <span className="header-cart-badge">{cartBadgeValue}</span>
               )}
@@ -122,7 +145,7 @@ export default function Header() {
               className="header-icon header-wishlist-link"
               aria-label={`Favoris (${wishlistItems.length})`}
             >
-              ❤️
+              <img src={heartIcon} alt="" className="header-icon-img" />
               {wishlistItems.length > 0 && (
                 <span className="header-cart-badge">
                   {wishlistItems.length > 9 ? "9+" : wishlistItems.length}

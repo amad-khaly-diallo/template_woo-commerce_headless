@@ -43,6 +43,11 @@
         .header-icon {
           font-size: 6lvh;
           min-width: 6%;
+          .header-icon-img {
+            display: block;
+            width: 1em;
+            height: 1em;
+          }
         }
         .header-wishlist-link {
           position: relative;
