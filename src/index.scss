@@ -15,19 +15,17 @@
 }
 
 :root {
-  --primary-color: #B17979;
-  --primary-color-light: #E97575;
-  --secondary-color: #B29A72;
-  --surface-color: #F6ECE0F6;
+  --primary-color: #b17979;
+  --primary-color-light: #e97575;
+  --secondary-color: #b29a72;
+  --surface-color: #f6ece0f6;
   --dark-color: #000000;
   --text-color-muted: #575757;
-  --bg-color: #FDF5EA;
-  --white-color: #FFFFFF;
+  --bg-color: #fdf5ea;
+  --white-color: #ffffff;
   --font-body: "PlayfairDisplay", sans-serif;
   --font-heading: "PoppinsCustom", sans-serif;
 }
-
-
 
 * {
   box-sizing: border-box;
@@ -52,9 +50,16 @@ body {
   color: var(--bg-color);
 }
 
-input, textarea, select, p, span, label, li, a {
-  font-size: 4vw; 
-  font-family: var(--font-heading);
+input,
+textarea,
+select,
+p,
+span,
+label,
+li,
+a {
+  font-size: 4vw;
+  font-family: var(--font-body);
   color: var(--dark-color);
   line-height: 1.5;
 
@@ -90,10 +95,20 @@ ul {
   }
 }
 
-ul { margin-left: 5vw; }
-li { list-style: square; margin-bottom: 1.5vw; }
-a { color: var(--text-color-muted); text-decoration: none; transition: all 0.3s ease; }
-a:hover { opacity: 1; }
+ul {
+  margin-left: 5vw;
+}
+li {
+  list-style: square;
+}
+a {
+  color: var(--text-color-muted);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+a:hover {
+  opacity: 1;
+}
 
 h1 {
   font-size: 8.5vw;
@@ -191,19 +206,19 @@ button {
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  padding: 6vw;
-  font-size: 4.5vw;
+  padding: 3vw 6vw;
+  font-size: 3vw;
   width: fit-content;
   border-radius: 2vw;
 
   @media screen and (aspect-ratio > 1/1) {
     padding: 1vw 2vw;
-    font-size: 1.2vw;
+    font-size: 1vw;
     border-radius: 0.5vw;
   }
   @media screen and (aspect-ratio > 2.6/1) {
     padding: 1.5lvh 3lvh;
-    font-size: 1.5lvh;
+    font-size: 3lvh;
     border-radius: 1lvh;
   }
 
