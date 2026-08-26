@@ -2,8 +2,8 @@
 //   outline: 1px solid red;
 // }
 @font-face {
-  font-family: "InterCustom";
-  src: url("./assets/fonts/Inter-Regular.ttf") format("truetype");
+  font-family: "PlayfairDisplay";
+  src: url("./assets/fonts/PlayfairDisplay-Medium.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
@@ -15,13 +15,15 @@
 }
 
 :root {
-  --primary-color: #2563eb;
-  --success-color: #16a34a;
-  --danger-color: #dc2626;
-  --dark-color: #0f172a;
-  --gray-color: #5f5f5f;
-  --bg-color: #f8fafc;
-  --font-body: "InterCustom", sans-serif;
+  --primary-color: #b17979;
+  --primary-color-light: #e97575;
+  --secondary-color: #b29a72;
+  --surface-color: #f6ece0f6;
+  --dark-color: #000000;
+  --text-color-muted: #575757;
+  --bg-color: #fdf5ea;
+  --white-color: #ffffff;
+  --font-body: "PlayfairDisplay", sans-serif;
   --font-heading: "PoppinsCustom", sans-serif;
 }
 
@@ -48,7 +50,6 @@ body {
   color: var(--bg-color);
 }
 
-/* Tailles de base pour les mobiles */
 input,
 textarea,
 select,
@@ -99,10 +100,9 @@ ul {
 }
 li {
   list-style: square;
-  margin-bottom: 1.5vw;
 }
 a {
-  color: var(--primary-color);
+  color: var(--text-color-muted);
   text-decoration: none;
   transition: all 0.3s ease;
 }
@@ -207,18 +207,18 @@ button {
   justify-content: center;
   transition: all 0.3s ease;
   padding: 3vw 6vw;
-  font-size: 4.5vw;
+  font-size: 3vw;
   width: fit-content;
   border-radius: 2vw;
 
   @media screen and (aspect-ratio > 1/1) {
     padding: 1vw 2vw;
-    font-size: 1.2vw;
+    font-size: 1vw;
     border-radius: 0.5vw;
   }
   @media screen and (aspect-ratio > 2.6/1) {
     padding: 1.5lvh 3lvh;
-    font-size: 1.5lvh;
+    font-size: 3lvh;
     border-radius: 1lvh;
   }
 
