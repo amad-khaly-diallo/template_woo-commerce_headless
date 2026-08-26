@@ -52,7 +52,7 @@
   flex-direction: row;
   margin-left: 1lvh;
   margin-right: 1lvh;
-  height: 220px;
+  height: 13vw;
 }
 .product-card .description span {
   width: 50%;
@@ -61,6 +61,9 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+.product-card .description select {
+  padding: 0.2lvh;
 }
 .product-card .description .stock-status {
   font-size: 1.3vw;
@@ -72,7 +75,7 @@
   color: var(--danger-color);
 }
 .product-card button {
-  height: 50px;
+  height: 3vw;
   margin: auto;
 }
 .product-card:hover {
