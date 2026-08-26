@@ -40,6 +40,9 @@
   font-weight: bolder;
   font-style: italic;
 }
+.product-card .product-link h4 {
+  margin-right: 5lvh;
+}
 .product-card .product-link img {
   max-width: 100%;
   height: 12vw;
