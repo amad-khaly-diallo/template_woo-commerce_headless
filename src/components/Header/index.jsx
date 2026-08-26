@@ -2,7 +2,6 @@ import "./index.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 import Autocomplete from "../Autocomplete";
 import { logout } from "../../slices/userSlice";
 import { openAuthModal } from "../../slices/authModalSlice";
@@ -19,7 +18,6 @@ export default function Header() {
   const wishlistItems = useSelector((state) => state.wishlist.items);
   const logoUrl = useSelector((state) => state.site.logoUrl);
   const dispatch = useDispatch();
-  const { pathname } = useLocation();
   const isAuthentificated = useSelector((state) => state.user?.token);
   const cartCount = cartItems.reduce(
     (total, item) => total + (Number(item.quantity) || 0),
@@ -30,41 +28,16 @@ export default function Header() {
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
-    let feedContainer = null;
-
-    const updateVisibility = (currentScrollY) => {
-      if (currentScrollY <= 0) {
-        setIsHidden(false);
-      } else if (currentScrollY > lastScrollY) {
-        setIsHidden(true);
-      } else if (currentScrollY < lastScrollY) {
-        setIsHidden(false);
-      }
-
-      lastScrollY = currentScrollY;
-    };
 
     const handleScroll = () => {
-      updateVisibility(window.scrollY);
+      const y = window.scrollY;
+      setIsHidden(y > 0 && y > lastScrollY);
+      lastScrollY = y;
     };
 
-    const handleFeedScroll = (event) => {
-      updateVisibility(event.currentTarget.scrollTop);
-    };
-
-    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-
-    feedContainer = document.querySelector(".feed-container");
-    feedContainer?.addEventListener("scroll", handleFeedScroll, {
-      passive: true,
-    });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      feedContainer?.removeEventListener("scroll", handleFeedScroll);
-    };
-  }, [pathname]);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header className={`header ${isHidden ? "header-hidden" : ""}`}>
