@@ -7,7 +7,7 @@
 }
 @font-face {
   font-family: "PoppinsCustom";
-  src: url("./assets/fonts/Poppins-Bold.ttf") format("truetype");
+  src: url("./assets/fonts/Poppins-Medium.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
@@ -59,7 +59,7 @@ label,
 li,
 a {
   font-size: 4vw;
-  font-family: var(--font-body);
+  font-family: var(--font-heading);
   color: var(--dark-color);
   line-height: 1.5;
 }
@@ -146,7 +146,7 @@ a:hover {
 
 h1 {
   font-size: 8.5vw;
-  font-family: var(--font-heading);
+  font-family: var(--font-body);
   margin-bottom: 4vw;
 }
 @media screen and (aspect-ratio > 1/1) {
@@ -164,7 +164,7 @@ h1 {
 
 h2 {
   font-size: 7.5vw;
-  font-family: var(--font-heading);
+  font-family: var(--font-body);
   margin-bottom: 3.5vw;
 }
 @media screen and (aspect-ratio > 1/1) {
@@ -254,10 +254,10 @@ h6 {
 
 button {
   cursor: pointer;
-  border: none;
+  border: 1px solid var(--primary-color);
   background: var(--primary-color);
   color: var(--bg-color);
-  font-family: var(--font-body);
+  font-family: var(--font-heading);
   display: flex;
   align-items: center;
   justify-content: center;
