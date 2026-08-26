@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .header {
   position: relative;
   width: 100%;
@@ -10,7 +11,9 @@
   height: 10lvh;
   position: fixed;
   z-index: 10;
-  background-color: var(--bg-color);
+  backdrop-filter: blur(4px);
+  /* Réduit l'opacité à 50% en mélangeant avec du transparent */
+  background-color: color-mix(in srgb, var(--bg-color) 70%, transparent);
   top: 0;
   width: 100%;
   max-width: 260lvh;
