@@ -59,7 +59,7 @@ label,
 li,
 a {
   font-size: 4vw;
-  font-family: var(--font-heading);
+  font-family: var(--font-body);
   color: var(--dark-color);
   line-height: 1.5;
 }
