@@ -3,11 +3,12 @@
      object-fit: cover;
   overflow: hidden;
   position: relative;
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 65vw;
+  margin-left: 2lvh;
+  margin-right: 2lvh;
+  height: clamp(300px, 40vw, 750px);
 }
 .sliderContainer .carousel-item {
   display: inline-flex;
@@ -26,7 +27,7 @@
   justify-content: center;
 }
 .sliderContainer .slMax {
-  min-width: 100dvw;
+  min-width: calc(100dvw - 4lvh - 12vw);
   pointer-events: none;
 }
 .sliderContainer .slMax .product-card {
@@ -34,47 +35,58 @@
   margin-top: 2vw;
 }
 .sliderContainer .arrowAndCounter {
+  position: static;
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin-left: 1lvh;
+  margin-right: 1lvh;
 }
 .sliderContainer .arrowAndCounter button {
+  position: absolute;
   background: var(--primary-color);
-  height: 100%;
-  width: 2.5%;
-  top: 0;
-  padding: 0;
-  border-radius: 0;
+  height: 6vw;
+  width: 6vw;
+  border-radius: 100%;
+  padding: 1vw;
 }
 .sliderContainer .arrowAndCounter button img {
-  width: 80%;
-  margin-left: 10%;
-}
-.sliderContainer .counter {
-  position: absolute;
-  z-index: 3;
-  bottom: 0;
-  font-size: 18px;
-  color: black;
-  padding: 10px;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: row;
+  width: 50%;
+  height: 50%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin: 0;
 }
 .sliderContainer .arrowLeft {
-  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 7;
-  left: 0px;
   cursor: pointer;
   opacity: 1;
   transition: 1s;
 }
 .sliderContainer .arrowRight {
-  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 7;
-  right: 0px;
   cursor: pointer;
   opacity: 1;
   transition: 1s;
+}
+.sliderContainer .counter {
+  position: absolute;
+  z-index: 3;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 18px;
+  color: black;
 }
 .sliderContainer .cooldown {
   opacity: 0;
@@ -93,17 +105,11 @@
   translate: 32%;
   transition: 1s;
 }
-.sliderContainer .start {
-  translate: 32%;
-  transition: 1s;
+.sliderContainer .prevPrev {
+  translate: -64%;
 }
-.sliderContainer .beforStart {
-  translate: -32%;
-  transition: 1s;
-}
-.sliderContainer .afterStart {
-  opacity: 0;
-  transition: 1s;
+.sliderContainer .nextNext {
+  translate: 64%;
 }
 .sliderContainer .dot {
   background-color: white;
