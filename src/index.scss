@@ -57,26 +57,37 @@ input, textarea, select, p, span, label, li, a {
   font-family: var(--font-body);
   color: var(--dark-color);
   line-height: 1.5;
-  
+
   @media screen and (aspect-ratio > 1/1) {
-    font-size: 1.2vw; 
+    font-size: 1.2vw;
   }
   @media screen and (aspect-ratio > 2.6/1) {
     /* Ajustement pour les écrans ultra-larges */
-    font-size: 1.5lvh; 
+    font-size: 1.5lvh;
   }
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   margin-bottom: 3vw;
-  @media screen and (aspect-ratio > 1/1) { margin-bottom: 1.5vw; }
-  @media screen and (aspect-ratio > 2.6/1) { margin-bottom: 2lvh; }
+  @media screen and (aspect-ratio > 1/1) {
+    margin-bottom: 1.5vw;
+  }
+  @media screen and (aspect-ratio > 2.6/1) {
+    margin-bottom: 2lvh;
+  }
 }
 
-p, ul {
+p,
+ul {
   margin-bottom: 3vw;
-  @media screen and (aspect-ratio > 1/1) { margin-bottom: 1vw; }
-  @media screen and (aspect-ratio > 2.6/1) { margin-bottom: 1.5lvh; }
+  @media screen and (aspect-ratio > 1/1) {
+    margin-bottom: 1vw;
+  }
+  @media screen and (aspect-ratio > 2.6/1) {
+    margin-bottom: 1.5lvh;
+  }
 }
 
 ul { margin-left: 5vw; }
@@ -88,48 +99,84 @@ h1 {
   font-size: 8.5vw;
   font-family: var(--font-heading);
   margin-bottom: 4vw;
-  @media screen and (aspect-ratio > 1/1) { font-size: 2.5vw; margin-bottom: 2vw; }
-  @media screen and (aspect-ratio > 2.6/1) { font-size: 3.2lvh; margin-bottom: 4lvh; }
+  @media screen and (aspect-ratio > 1/1) {
+    font-size: 2.5vw;
+    margin-bottom: 2vw;
+  }
+  @media screen and (aspect-ratio > 2.6/1) {
+    font-size: 3.2lvh;
+    margin-bottom: 4lvh;
+  }
 }
 
 h2 {
   font-size: 7.5vw;
   font-family: var(--font-heading);
   margin-bottom: 3.5vw;
-  @media screen and (aspect-ratio > 1/1) { font-size: 2.2vw; margin-bottom: 1.5vw; }
-  @media screen and (aspect-ratio > 2.6/1) { font-size: 2.8lvh; margin-bottom: 3.5lvh; }
+  @media screen and (aspect-ratio > 1/1) {
+    font-size: 2.2vw;
+    margin-bottom: 1.5vw;
+  }
+  @media screen and (aspect-ratio > 2.6/1) {
+    font-size: 2.8lvh;
+    margin-bottom: 3.5lvh;
+  }
 }
 
 h3 {
   font-size: 6.5vw;
   font-family: var(--font-heading);
   margin-bottom: 3vw;
-  @media screen and (aspect-ratio > 1/1) { font-size: 2vw; margin-bottom: 1.2vw; }
-  @media screen and (aspect-ratio > 2.6/1) { font-size: 2.5lvh; margin-bottom: 3lvh; }
+  @media screen and (aspect-ratio > 1/1) {
+    font-size: 2vw;
+    margin-bottom: 1.2vw;
+  }
+  @media screen and (aspect-ratio > 2.6/1) {
+    font-size: 2.5lvh;
+    margin-bottom: 3lvh;
+  }
 }
 
 h4 {
   font-size: 4.5vw;
   font-family: var(--font-heading);
   margin-bottom: 2.5vw;
-  @media screen and (aspect-ratio > 1/1) { font-size: 1.4vw; margin-bottom: 1vw; }
-  @media screen and (aspect-ratio > 2.6/1) { font-size: 2.2lvh; margin-bottom: 2.5lvh; }
+  @media screen and (aspect-ratio > 1/1) {
+    font-size: 1.4vw;
+    margin-bottom: 1vw;
+  }
+  @media screen and (aspect-ratio > 2.6/1) {
+    font-size: 2.2lvh;
+    margin-bottom: 2.5lvh;
+  }
 }
 
 h5 {
   font-size: 4vw;
   font-family: var(--font-heading);
   margin-bottom: 2vw;
-  @media screen and (aspect-ratio > 1/1) { font-size: 1.5vw; margin-bottom: 0.8vw; }
-  @media screen and (aspect-ratio > 2.6/1) { font-size: 2lvh; margin-bottom: 2lvh; }
+  @media screen and (aspect-ratio > 1/1) {
+    font-size: 1.5vw;
+    margin-bottom: 0.8vw;
+  }
+  @media screen and (aspect-ratio > 2.6/1) {
+    font-size: 2lvh;
+    margin-bottom: 2lvh;
+  }
 }
 
 h6 {
   font-size: 4vw;
   font-family: var(--font-heading);
   margin-bottom: 1.5vw;
-  @media screen and (aspect-ratio > 1/1) { font-size: 1.3vw; margin-bottom: 0.5vw; }
-  @media screen and (aspect-ratio > 2.6/1) { font-size: 1.7lvh; margin-bottom: 1.5lvh; }
+  @media screen and (aspect-ratio > 1/1) {
+    font-size: 1.3vw;
+    margin-bottom: 0.5vw;
+  }
+  @media screen and (aspect-ratio > 2.6/1) {
+    font-size: 1.7lvh;
+    margin-bottom: 1.5lvh;
+  }
 }
 // select {
 //   margin-left: 2lvh;
@@ -148,7 +195,7 @@ button {
   font-size: 4.5vw;
   width: fit-content;
   border-radius: 2vw;
-  
+
   @media screen and (aspect-ratio > 1/1) {
     padding: 1vw 2vw;
     font-size: 1.2vw;
@@ -159,7 +206,12 @@ button {
     font-size: 1.5lvh;
     border-radius: 1lvh;
   }
-  
-  &:hover { transform: scale(1.1); }
-  &:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 }

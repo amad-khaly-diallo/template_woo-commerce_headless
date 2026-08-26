@@ -41,11 +41,6 @@ body {
   margin: 0 auto;
 }
 
-::-moz-selection {
-  background-color: var(--primary-color);
-  color: var(--bg-color);
-}
-
 ::selection {
   background-color: var(--primary-color);
   color: var(--bg-color);
@@ -58,41 +53,64 @@ input, textarea, select, p, span, label, li, a {
   line-height: 1.5;
 }
 @media screen and (aspect-ratio > 1/1) {
-  input, textarea, select, p, span, label, li, a {
+  input,
+  textarea,
+  select,
+  p,
+  span,
+  label,
+  li,
+  a {
     font-size: 1.2vw;
   }
 }
 @media screen and (aspect-ratio > 2.6/1) {
-  input, textarea, select, p, span, label, li, a {
+  input,
+  textarea,
+  select,
+  p,
+  span,
+  label,
+  li,
+  a {
     /* Ajustement pour les écrans ultra-larges */
     font-size: 1.5lvh;
   }
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   margin-bottom: 3vw;
 }
 @media screen and (aspect-ratio > 1/1) {
-  input, textarea, select {
+  input,
+  textarea,
+  select {
     margin-bottom: 1.5vw;
   }
 }
 @media screen and (aspect-ratio > 2.6/1) {
-  input, textarea, select {
+  input,
+  textarea,
+  select {
     margin-bottom: 2lvh;
   }
 }
 
-p, ul {
+p,
+ul {
   margin-bottom: 3vw;
 }
 @media screen and (aspect-ratio > 1/1) {
-  p, ul {
+  p,
+  ul {
     margin-bottom: 1vw;
   }
 }
 @media screen and (aspect-ratio > 2.6/1) {
-  p, ul {
+  p,
+  ul {
     margin-bottom: 1.5lvh;
   }
 }
@@ -236,7 +254,6 @@ button {
   transition: all 0.3s ease;
   padding: 3vw 6vw;
   font-size: 4.5vw;
-  width: -moz-fit-content;
   width: fit-content;
   border-radius: 2vw;
 }
