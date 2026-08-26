@@ -1,14 +1,14 @@
 .sliderContainer {
-  //height: 100%;
   object-fit: cover;
   overflow: hidden;
   position: relative;
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  //background-color: white;
-  height: 65vw;
+  margin-left: 2lvh;
+  margin-right: 2lvh;
+  height: clamp(300px, 40vw, 750px);
+
   .carousel-item {
     display: inline-flex;
     align-items: center;
@@ -16,95 +16,115 @@
     background-color: white;
     overflow: hidden;
   }
+
   .sl {
     transition: translate 1.2s;
     position: absolute;
     object-fit: cover;
-    //height: 100%;
     top: 0;
     display: flex;
     justify-content: center;
   }
+
   .slMax {
-    min-width: 100dvw;
+    min-width: calc(100dvw - 4lvh - 12vw);
     pointer-events: none;
+
     .product-card {
       pointer-events: all;
       margin-top: 2vw;
     }
   }
+
   .arrowAndCounter {
+    position: static;
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin-left: 1lvh;
+    margin-right: 1lvh;
+
     button {
+      position: absolute;
+
       background: var(--primary-color);
-      height: 100%;
-      width: 2.5%;
-      top: 0;
-      padding: 0;
-      border-radius: 0;
+      height: 6vw;
+      width: 6vw;
+      border-radius: 100%;
+      padding: 1vw;
+
       img {
-        width: 80%;
-        margin-left: 10%;
+        width: 50%;
+        height: 50%;
+        object-fit: contain;
+        margin: 0;
       }
     }
   }
+
+  .arrowLeft {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 7;
+    cursor: pointer;
+    opacity: 1;
+    transition: 1s;
+  }
+
+  .arrowRight {
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 7;
+    cursor: pointer;
+    opacity: 1;
+    transition: 1s;
+  }
+
   .counter {
     position: absolute;
     z-index: 3;
     bottom: 0;
-    font-size: 18px;
-    color: black;
-    padding: 10px;
-    border-radius: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: row;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 18px;
+    color: black;
   }
-  .arrowLeft {
-    position: absolute;
-    z-index: 7;
-    left: 0px;
-    cursor: pointer;
-    opacity: 1;
-    transition: 1s;
-  }
-  .arrowRight {
-    position: absolute;
-    z-index: 7;
-    right: 0px;
-    cursor: pointer;
-    opacity: 1;
-    transition: 1s;
-  }
+
   .cooldown {
     opacity: 0;
     cursor: default;
     transition: 1s;
   }
+
   .previous {
     translate: -32%;
     transition: 1s;
   }
+
   .selected {
     translate: 0%;
     transition: 1s;
   }
+
   .next {
     translate: 32%;
     transition: 1s;
   }
-  .start {
-    translate: 32%;
-    transition: 1s;
+
+  .prevPrev {
+    translate: -64%;
   }
-  .beforStart {
-    translate: -32%;
-    transition: 1s;
+
+  .nextNext {
+    translate: 64%;
   }
-  .afterStart {
-    opacity: 0;
-    transition: 1s;
-  }
+
   .dot {
     background-color: white;
     width: 12px;
@@ -115,12 +135,14 @@
     border: solid 3px black;
     transition: 0.4s;
   }
+
   .dotSelected {
     margin-top: 5px;
     width: 20px;
     height: 20px;
     transition: 0.4s;
   }
+
   .inner {
     display: flex;
     flex-direction: row;
@@ -128,14 +150,17 @@
     overflow: hidden;
     justify-content: center;
   }
+
   .buttonArrow {
     border: 0px;
     background: none;
   }
+
   .blinded {
     opacity: 0;
   }
 }
+
 .sliderField:hover {
   .like {
     right: -10px;
@@ -143,6 +168,7 @@
     bottom: 10px;
   }
 }
+
 .sliderField {
   .like {
     bottom: 10px;
