@@ -59,17 +59,31 @@ label,
 li,
 a {
   font-size: 4vw;
-  font-family: var(--font-heading);
+  font-family: var(--font-body);
   color: var(--dark-color);
   line-height: 1.5;
 }
 @media screen and (aspect-ratio > 1/1) {
-  input, textarea, select, p, span, label, li, a {
+  input,
+  textarea,
+  select,
+  p,
+  span,
+  label,
+  li,
+  a {
     font-size: 1.2vw;
   }
 }
 @media screen and (aspect-ratio > 2.6/1) {
-  input, textarea, select, p, span, label, li, a {
+  input,
+  textarea,
+  select,
+  p,
+  span,
+  label,
+  li,
+  a {
     /* Ajustement pour les écrans ultra-larges */
     font-size: 1.5lvh;
   }
