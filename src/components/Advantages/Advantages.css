@@ -1,0 +1,28 @@
+.advantages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fdf6ec;
+}
+
+.advantage-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 45%;
+  min-width: 200px;
+}
+
+.advantage-item svg {
+  flex-shrink: 0;
+}
+
+.advantage-item p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.3;
+}
