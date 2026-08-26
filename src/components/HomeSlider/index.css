@@ -8,7 +8,7 @@
   justify-content: center;
   margin-left: 2lvh;
   margin-right: 2lvh;
-  height: clamp(400px, 50vw, 750px);
+  height: clamp(300px, 40vw, 750px);
 }
 .sliderContainer .carousel-item {
   display: inline-flex;
@@ -105,17 +105,11 @@
   translate: 32%;
   transition: 1s;
 }
-.sliderContainer .start {
-  translate: 32%;
-  transition: 1s;
+.sliderContainer .prevPrev {
+  translate: -64%;
 }
-.sliderContainer .beforStart {
-  translate: -32%;
-  transition: 1s;
-}
-.sliderContainer .afterStart {
-  opacity: 0;
-  transition: 1s;
+.sliderContainer .nextNext {
+  translate: 64%;
 }
 .sliderContainer .dot {
   background-color: white;
