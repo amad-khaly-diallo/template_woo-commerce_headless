@@ -7,7 +7,7 @@
 }
 @font-face {
   font-family: "PoppinsCustom";
-  src: url("./assets/fonts/Poppins-Bold.ttf") format("truetype");
+  src: url("./assets/fonts/Poppins-Medium.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
@@ -20,9 +20,8 @@
   --text-color-muted: #575757;
   --bg-color: #FDF5EA;
   --white-color: #FFFFFF;
-  --font-body: "PoppinsCustom", sans-serif; 
-   --font-heading: "PlayfairDisplay", sans-serif;
-
+  --font-body: "PlayfairDisplay", sans-serif;
+  --font-heading: "PoppinsCustom", sans-serif;
 }
 
 * {
@@ -53,7 +52,7 @@ body {
 
 input, textarea, select, p, span, label, li, a {
   font-size: 4vw;
-  font-family: var(--font-body);
+  font-family: var(--font-heading);
   color: var(--dark-color);
   line-height: 1.5;
 }
@@ -118,7 +117,7 @@ a:hover {
 
 h1 {
   font-size: 8.5vw;
-  font-family: var(--font-heading);
+  font-family: var(--font-body);
   margin-bottom: 4vw;
 }
 @media screen and (aspect-ratio > 1/1) {
@@ -136,7 +135,7 @@ h1 {
 
 h2 {
   font-size: 7.5vw;
-  font-family: var(--font-heading);
+  font-family: var(--font-body);
   margin-bottom: 3.5vw;
 }
 @media screen and (aspect-ratio > 1/1) {
@@ -226,15 +225,15 @@ h6 {
 
 button {
   cursor: pointer;
-  border: none;
+  border: 1px solid var(--primary-color);
   background: var(--primary-color);
   color: var(--bg-color);
-  font-family: var(--font-body);
+  font-family: var(--font-heading);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  padding: 3vw 6vw;
+  padding: 6vw;
   font-size: 4.5vw;
   width: -moz-fit-content;
   width: fit-content;
@@ -255,7 +254,7 @@ button {
   }
 }
 button:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 button:disabled {
   opacity: 0.6;
