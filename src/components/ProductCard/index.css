@@ -69,10 +69,10 @@
   font-size: 1.3vw;
 }
 .product-card .description .stock-status-available {
-  color: var(--success-color);
+  color: rgb(0, 110, 24);
 }
 .product-card .description .stock-status-unavailable {
-  color: var(--danger-color);
+  color: rgb(136, 0, 0);
 }
 .product-card button {
   height: 2.5vw;
