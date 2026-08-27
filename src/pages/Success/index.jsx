@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { showToast } from "../../slices/toastSlice";
 import OrderDetails from "../../components/OrderDetails";
-import "./index.scss";
+import "./index.css";
 
 export default function Success() {
   const { orderId } = useParams();
@@ -35,8 +35,8 @@ export default function Success() {
       ) : (
         <div className="success-guest">
           <p>
-            Vous avez commandé en tant qu'invité. Un email de confirmation
-            vous a été envoyé avec le récapitulatif de votre commande.
+            Vous avez commandé en tant qu'invité. Un email de confirmation vous
+            a été envoyé avec le récapitulatif de votre commande.
           </p>
         </div>
       )}
