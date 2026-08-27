@@ -3,18 +3,23 @@
   width: 100%;
   .margin {
     height: 10lvh;
+    transition: height 0.25s ease;
   }
   .content {
     height: 10lvh;
     position: fixed;
     z-index: 10;
-    background-color: var(--bg-color);
+    backdrop-filter: blur(4px);
+    /* Réduit l'opacité à 50% en mélangeant avec du transparent */
+    background-color: color-mix(in srgb, var(--bg-color) 70%, transparent);
+    //backdrop-filter: opacity(0.6);
     top: 0;
     width: 100%;
     max-width: 260lvh;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    transition: height 0.25s ease;
     .menu {
       height: 100%;
       display: flex;
@@ -40,7 +45,20 @@
         }
         .header-icon {
           font-size: 6lvh;
-          width: 6%;
+          min-width: 6%;
+          .header-icon-img {
+            display: block;
+            width: 1em;
+            height: 1em;
+          }
+        }
+        .header-wishlist-link {
+          position: relative;
+          span {
+            position: absolute;
+            top: 0;
+            right: 0;
+          }
         }
         .header-cart-link {
           position: relative;
@@ -78,6 +96,15 @@
           margin: 0 3lvh;
         }
       }
+    }
+  }
+  &.header-hidden {
+    .margin {
+      height: 0;
+    }
+    .content {
+      height: 0;
+      overflow: hidden;
     }
   }
 }

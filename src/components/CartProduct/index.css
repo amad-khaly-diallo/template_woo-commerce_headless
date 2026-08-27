@@ -1,8 +1,19 @@
-.cart-product-list {
+.cart-product {
+  width: 100%;
   display: flex;
-  gap: 10px;
+}
+.cart-product a {
+  width: 70%;
+}
+.cart-product button {
+  width: 9%;
+  margin-right: 1%;
 }
 .cart-product-thumbnail {
-  width: 100px;
-  height: 100px;
+  width: 20%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin-top: 0;
+  float: left;
+  margin-right: 2lvh;
 }/*# sourceMappingURL=index.css.map */

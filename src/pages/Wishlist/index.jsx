@@ -21,7 +21,7 @@ export default function Wishlist() {
   }, [isAuthentificated]);
 
   return (
-    <div className="wishlist-page">
+    <main className="wishlist-page">
       <h1>Mes favoris</h1>
       {loading && <Loader size="lg" />}
       {!loading && items.length === 0 && <p>Aucun favori pour le moment.</p>}
@@ -30,6 +30,6 @@ export default function Wishlist() {
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
-    </div>
+    </main>
   );
 }

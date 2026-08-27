@@ -1,4 +1,3 @@
-import React from "react";
 import "./index.css";
 
 const AverageRating = ({ avgRating = 0, totalReviews = 0 }) => {

@@ -36,6 +36,7 @@ import Toast from "./components/Toast";
 import AuthModal from "./components/AuthModal";
 
 import "./index.css";
+import ScrollToTop from "./components/ScrollToTop";
 
 store.dispatch(initializeCartThunk());
 store.dispatch(fetchSiteThunk());
@@ -57,6 +58,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         }}
         // basename="/ecom"
       >
+        <ScrollToTop />
         <Header />
         <Seo />
         <Routes>

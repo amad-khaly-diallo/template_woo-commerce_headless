@@ -4,7 +4,7 @@ import { fetchCategoriesThunk } from "../../thunkActionsCreator/categoriesThunks
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsThunk } from "../../thunkActionsCreator/productsThunks";
 import { setFilters } from "../../slices/filtersSlice";
-
+import PriceRangeSlider from "../PriceRangeSlider";
 export default function Filters() {
   const dispatch = useDispatch();
   const { items: categories, loading: categoriesLoading } = useSelector(
@@ -12,6 +12,14 @@ export default function Filters() {
   );
   const { list, loading, error } = useSelector((state) => state.products);
   const filters = useSelector((state) => state.filters);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const hasActiveFilters =
+    filters.category ||
+    filters.min_price ||
+    filters.max_price ||
+    filters.orderby !== "date" ||
+    filters.order !== "desc";
 
   useEffect(() => {
     dispatch(fetchCategoriesThunk());
@@ -19,11 +27,13 @@ export default function Filters() {
 
   const handleCategoryChange = (e) => {
     dispatch(setFilters({ category: e.target.value, search: "" }));
+    setIsOpen(false);
   };
 
   const handleSortChange = (e) => {
     const [orderby, order] = e.target.value.split("-");
     dispatch(setFilters({ orderby, order }));
+    setIsOpen(false);
   };
 
   const handlePriceChange = (e) => {
@@ -31,43 +41,79 @@ export default function Filters() {
     dispatch(setFilters({ [name]: value }));
   };
 
+  const handleControlsBlur = (e) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setIsOpen(false);
+    }
+  };
+
   return (
     <div className="filters">
       <div className="margin"></div>
-      <div className="content">
-        <select value={filters.category} onChange={handleCategoryChange}>
-          <option value="">Toutes les catégories</option>
-          {categories.map((cat) => (
-            <option
-              key={cat.id}
-              value={cat.id}
-              dangerouslySetInnerHTML={{ __html: cat.name }}
-            ></option>
-          ))}
-        </select>
-        <input
-          type="number"
-          name="min_price"
-          value={filters.min_price}
-          onChange={handlePriceChange}
-          placeholder="Prix min (€)"
-        />
-        <input
-          type="number"
-          name="max_price"
-          value={filters.max_price}
-          onChange={handlePriceChange}
-          placeholder="Prix max (€)"
-        />
-        <select
-          value={`${filters.orderby}-${filters.order}`}
-          onChange={handleSortChange}
+      <div className={`content${isOpen ? " open" : ""}`}>
+        <button
+          type="button"
+          className={`filter-toggle${isOpen ? " active" : ""}`}
+          onClick={() => setIsOpen((open) => !open)}
+          aria-expanded={isOpen}
+          aria-controls="filter-controls"
         >
-          <option value="date-desc">Nouveautés</option>
-          <option value="price-asc">Prix : du - cher au + cher</option>
-          <option value="price-desc">Prix : du + cher au - cher</option>
-          <option value="title-asc">Nom : A à Z</option>
-        </select>
+          <svg viewBox="0 0 64 51" fill="none">
+            <path d="M0 7.28571H64V0H0V7.28571Z" fill="currentColor" />
+            <path d="M8 21.8571H56V14.5714H8V21.8571Z" fill="currentColor" />
+            <path d="M16 36.4286H48V29.1429H16V36.4286Z" fill="currentColor" />
+            <path d="M40 51H24V43.7143H40V51Z" fill="currentColor" />
+          </svg>
+          <span>Filtres</span>
+          {hasActiveFilters && <span className="filter-toggle-dot"></span>}
+        </button>
+        <div
+          id="filter-controls"
+          className={`filter-controls${isOpen ? " open" : ""}`}
+          inert={!isOpen}
+          onBlur={handleControlsBlur}
+        >
+          <div className="filter-controls-inner">
+            <select value={filters.category} onChange={handleCategoryChange}>
+              <option value="">Toutes les catégories</option>
+              {categories.map((cat) => (
+                <option
+                  key={cat.id}
+                  value={cat.id}
+                  dangerouslySetInnerHTML={{ __html: cat.name }}
+                ></option>
+              ))}
+            </select>
+            <PriceRangeSlider />
+
+            <div className="price-group">
+              <input
+                type="number"
+                name="min_price"
+                value={filters.min_price}
+                onChange={handlePriceChange}
+                placeholder="Prix min (€)"
+              />
+              <span className="price-separator">–</span>
+              <input
+                type="number"
+                name="max_price"
+                value={filters.max_price}
+                onChange={handlePriceChange}
+                placeholder="Prix max (€)"
+              />
+            </div>
+            <select
+              value={`${filters.orderby}-${filters.order}`}
+              onChange={handleSortChange}
+            >
+              <option value="date-desc">Nouveautés</option>
+              <option value="price-asc">Prix : du - cher au + cher</option>
+              <option value="price-desc">Prix : du + cher au - cher</option>
+              <option value="title-asc">Nom : A à Z</option>
+            </select>
+          </div>
+        </div>
       </div>
     </div>
   );
