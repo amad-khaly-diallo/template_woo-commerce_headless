@@ -5,6 +5,7 @@
 }
 .header .margin {
   height: 10lvh;
+  transition: height 0.25s ease;
 }
 .header .content {
   height: 10lvh;
@@ -20,6 +21,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  transition: height 0.25s ease;
 }
 .header .content .menu {
   height: 100%;
@@ -46,6 +48,11 @@
 .header .content .menu .header-actions .header-icon {
   font-size: 6lvh;
   min-width: 6%;
+}
+.header .content .menu .header-actions .header-icon .header-icon-img {
+  display: block;
+  width: 1em;
+  height: 1em;
 }
 .header .content .menu .header-actions .header-wishlist-link {
   position: relative;
