@@ -69,6 +69,10 @@ export default function Header() {
         <div className="menu">
           <Link to="/" className="header-logo" aria-label="Ecommerce">
             <img src={logoUrl || "./logo.webp"} alt="Logo" />
+            <span className="header-logo-text">
+              <strong>LUMÉA</strong>
+              <small>BEAUTÉ & BIEN-ÊTRE</small>
+            </span>
           </Link>
           <nav
             className={`header-nav ${menuOpen ? "open" : ""}`}
