@@ -1,5 +1,5 @@
 import React from 'react';
-import './Advantages.css';
+import './Advantages.scss';
 
 function Advantages() {
   return (

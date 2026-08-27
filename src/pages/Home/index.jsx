@@ -5,11 +5,13 @@ import Advantages from "../../components/Advantages";
 
 export default function Home() {
   return (
-    <main className="home">
+    <div className="home">
       <PageContent slug="home" />
       <HomeSlider />
-       <Advantages />
-      <PageContent slug="a-propos" />
-    </main>
+      <div className="apropos-wrapper">
+        <PageContent slug="a-propos" />
+        <Advantages />
+      </div>
+    </div>
   );
 }
