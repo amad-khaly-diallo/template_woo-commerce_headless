@@ -114,6 +114,23 @@
 .product-main-card .info-wrapper .price-action-card .actions-row {
   display: flex;
   align-items: center;
+  gap: 1vw;
+}
+.product-details-page .info-wrapper .price-action-card .actions-row img {
+  width: 8vw;
+  height: 8vw;
+}
+@media screen and (aspect-ratio > 1/1) {
+  .product-details-page .info-wrapper .price-action-card .actions-row img {
+    width: 3vw;
+    height: 3vw;
+  }
+}
+@media screen and (aspect-ratio > 2.6/1) {
+  .product-details-page .info-wrapper .price-action-card .actions-row img {
+    width: 2vw;
+    height: 2vw;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */
