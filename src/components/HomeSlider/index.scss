@@ -5,9 +5,19 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 2lvh;
-  margin-right: 2lvh;
-  height: clamp(300px, 40vw, 750px);
+
+  height: 80lvh;
+
+  @media screen and (aspect-ratio > 1/1) {
+    height: 40vw;
+    margin-left: 2lvh;
+    margin-right: 2lvh;
+  }
+  @media screen and (aspect-ratio > 2.6/1) {
+    height: 35vw;
+    margin-left: 2lvh;
+    margin-right: 2lvh;
+  }
 
   .carousel-item {
     display: inline-flex;
@@ -27,12 +37,22 @@
   }
 
   .slMax {
-    min-width: calc(100dvw - 4lvh - 12vw);
     pointer-events: none;
+    width: 100%;
 
     .product-card {
       pointer-events: all;
       margin-top: 2vw;
+      width: 60%;
+
+      @media screen and (aspect-ratio > 1/1) {
+        width: 25%;
+        min-width: calc(100dvw - 4lvh - 12vw);
+      }
+      @media screen and (aspect-ratio > 2.6/1) {
+        width: 25%;
+        min-width: calc(100dvw - 4lvh - 12vw);
+      }
     }
   }
 
@@ -70,6 +90,14 @@
     cursor: pointer;
     opacity: 1;
     transition: 1s;
+    display: none;
+
+    @media screen and (aspect-ratio > 1/1) {
+      display: block;
+    }
+    @media screen and (aspect-ratio > 2.6/1) {
+      display: block;
+    }
   }
 
   .arrowRight {
@@ -80,6 +108,14 @@
     cursor: pointer;
     opacity: 1;
     transition: 1s;
+    display: none;
+
+    @media screen and (aspect-ratio > 1/1) {
+      display: block;
+    }
+    @media screen and (aspect-ratio > 2.6/1) {
+      display: block;
+    }
   }
 
   .counter {
@@ -103,18 +139,35 @@
   }
 
   .previous {
-    translate: -32%;
     transition: 1s;
+    translate: -64% 5%;
+    z-index: 3;
+
+    @media screen and (aspect-ratio > 1/1) {
+      translate: -32% 5%;
+    }
+    @media screen and (aspect-ratio > 2.6/1) {
+      translate: -32% 5%;
+    }
   }
 
   .selected {
-    translate: 0% -5%;
+    translate: 0%;
     transition: 1s;
+    z-index: 5;
   }
 
   .next {
-    translate: 32%;
+    translate: 64% 5%;
     transition: 1s;
+    z-index: 3;
+
+    @media screen and (aspect-ratio > 1/1) {
+      translate: 32% 5%;
+    }
+    @media screen and (aspect-ratio > 2.6/1) {
+      translate: 32% 5%;
+    }
   }
 
   .prevPrev {
@@ -134,6 +187,13 @@
     z-index: 5;
     border: solid 3px black;
     transition: 0.4s;
+
+    @media screen and (aspect-ratio > 1/1) {
+      translate: 32% 5%;
+    }
+    @media screen and (aspect-ratio > 2.6/1) {
+      translate: 32% 5%;
+    }
   }
 
   .dotSelected {
