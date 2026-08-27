@@ -23,7 +23,7 @@ export const initializeCartThunk = createAsyncThunk(
         },
       );
       if (!response.ok) {
-        return thunkAPI.rejectWithValue("Impossible de récupérer le panier initial.",);
+        throw new Error("Impossible de récupérer le panier initial.");
       }
       const nonce = response.headers.get("Nonce");
       const cart = await response.json();
@@ -38,12 +38,11 @@ export const emptyCartThunk = createAsyncThunk(
   "cart/empty",
   async (_, thunkAPI) => {
     const currentNonce = thunkAPI.getState().cart.nonce;
-
-    if (!currentNonce) {
-      return thunkAPI.rejectWithValue("Jeton de session manquant.");
-    }
-
     try {
+      if (!currentNonce) {
+        throw new Error("Jeton de session manquant.");
+      }
+
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/wp-json/wc/store/v1/cart/items`,
         {
@@ -53,7 +52,7 @@ export const emptyCartThunk = createAsyncThunk(
       );
 
       if (!response.ok) {
-        return thunkAPI.rejectWithValue("Impossible de vider le panier.");
+        throw new Error("Impossible de vider le panier.");
       }
 
       const nonce = response.headers.get("Nonce");
@@ -71,11 +70,11 @@ export const addProductToCart = createAsyncThunk(
   async ({ productId, quantity, variation = [] }, thunkAPI) => {
     const currentNonce = thunkAPI.getState().cart.nonce;
 
-    if (!currentNonce) {
-      return thunkAPI.rejectWithValue("Jeton de session manquant.");
-    }
-
     try {
+      if (!currentNonce) {
+        throw new Error("Jeton de session manquant.");
+      }
+
       const variationData = Object.entries(variation).map(
         ([attribute, value]) => ({
           attribute,
@@ -97,9 +96,7 @@ export const addProductToCart = createAsyncThunk(
       );
 
       if (!response.ok) {
-        return thunkAPI.rejectWithValue(
-          "Impossible d'ajouter l'article au panier.",
-        );
+        throw new Error("Impossible d'ajouter l'article au panier.");
       }
       // Si WooCommerce renouvelle le jeton dans la réponse, on met à jour le store et le localStorage
       const nonce = response.headers.get("Nonce");
@@ -116,11 +113,11 @@ export const deleteProductFromCart = createAsyncThunk(
   async ({ itemKey }, thunkAPI) => {
     const currentNonce = thunkAPI.getState().cart.nonce;
 
-    if (!currentNonce) {
-      return thunkAPI.rejectWithValue("Jeton de session manquant.");
-    }
-
     try {
+      if (!currentNonce) {
+        throw new Error("Jeton de session manquant.");
+      }
+
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/wp-json/wc/store/v1/cart/remove-item`,
         {
@@ -131,9 +128,7 @@ export const deleteProductFromCart = createAsyncThunk(
       );
 
       if (!response.ok) {
-        return thunkAPI.rejectWithValue(
-          "Impossible de supprimer l'article du panier.",
-        );
+        throw new Error("Impossible de supprimer l'article du panier.");
       }
       // Si WooCommerce renouvelle le jeton dans la réponse, on met à jour le store et le localStorage
       const nonce = response.headers.get("Nonce");
@@ -150,13 +145,13 @@ export const substractProductFromCart = createAsyncThunk(
   async ({ itemKey, quantity }, thunkAPI) => {
     const currentNonce = thunkAPI.getState().cart.nonce;
 
-    if (!currentNonce) {
-      return thunkAPI.rejectWithValue("Jeton de session manquant.");
-    }
-
-    const newQuantity = quantity - 1;
-
     try {
+      if (!currentNonce) {
+        throw new Error("Jeton de session manquant.");
+      }
+
+      const newQuantity = quantity - 1;
+
       let url = "";
       let body = {};
 
@@ -182,7 +177,7 @@ export const substractProductFromCart = createAsyncThunk(
       const response = await fetch(url, body);
 
       if (!response.ok) {
-        return thunkAPI.rejectWithValue("Impossible de modifier l'article.");
+        throw new Error("Impossible de modifier l'article.");
       }
 
       const nonce = response.headers.get("Nonce");
@@ -199,11 +194,11 @@ export const applyCouponThunk = createAsyncThunk(
   async ({ code }, thunkAPI) => {
     const currentNonce = thunkAPI.getState().cart.nonce;
 
-    if (!currentNonce) {
-      return thunkAPI.rejectWithValue("Jeton de session manquant.");
-    }
-
     try {
+      if (!currentNonce) {
+        throw new Error("Jeton de session manquant.");
+      }
+
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/wp-json/wc/store/v1/cart/apply-coupon`,
         {
@@ -216,7 +211,7 @@ export const applyCouponThunk = createAsyncThunk(
       const cart = await response.json();
 
       if (!response.ok) {
-        return thunkAPI.rejectWithValue(cart.message || "Ce code promo n'est pas valide.");
+        throw new Error(cart.message || "Ce code promo n'est pas valide.");
       }
 
       const nonce = response.headers.get("Nonce");
@@ -232,11 +227,11 @@ export const removeCouponThunk = createAsyncThunk(
   async ({ code }, thunkAPI) => {
     const currentNonce = thunkAPI.getState().cart.nonce;
 
-    if (!currentNonce) {
-      return thunkAPI.rejectWithValue("Jeton de session manquant.");
-    }
-
     try {
+      if (!currentNonce) {
+        throw new Error("Jeton de session manquant.");
+      }
+
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/wp-json/wc/store/v1/cart/remove-coupon`,
         {
@@ -247,7 +242,7 @@ export const removeCouponThunk = createAsyncThunk(
       );
 
       if (!response.ok) {
-        return thunkAPI.rejectWithValue("Impossible de retirer ce code promo.");
+        throw new Error("Impossible de retirer ce code promo.");
       }
 
       const nonce = response.headers.get("Nonce");
