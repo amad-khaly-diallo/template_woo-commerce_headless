@@ -1,5 +1,6 @@
 import { openAuthModal } from "../../slices/authModalSlice";
 import { useDispatch } from "react-redux";
+import FocusTrap from "react-focus-trap";
 import "./index.css";
 
 export default function CheckoutAuthPromptModal({
@@ -10,13 +11,14 @@ export default function CheckoutAuthPromptModal({
 
   return (
     <div className="checkout-modal-overlay">
-      <div>
-        <h3>Créer un compte ou se connecter ?</h3>
-        <p>
-          Vous êtes actuellement en train de commander en tant qu'invité. Sans
-          compte, vous ne pourrez pas suivre votre historique de commande ni
-          retrouver cette facture plus tard sur le site.
-        </p>
+    <div>
+      <h3>Créer un compte ou se connecter ?</h3>
+      <p>
+        Vous êtes actuellement en train de commander en tant qu'invité. Sans
+        compte, vous ne pourrez pas suivre votre historique de commande ni
+        retrouver cette facture plus tard sur le site.
+      </p>
+      <FocusTrap>
         <div className="checkout-modal-overlay-buttons">
           <button
             type="button"
@@ -31,7 +33,8 @@ export default function CheckoutAuthPromptModal({
             Continuer sans compte
           </button>
         </div>
-      </div>
+      </FocusTrap>
     </div>
+  </div>
   );
 }
