@@ -18,10 +18,10 @@ export default function Success() {
   }, [orderId, dispatch]);
 
   return (
-    <div className="success-page">
+    <main className="success-page">
       <h1>Commande confirmée</h1>
       <p className="thank-you">Merci pour votre commande.</p>
       {order ? <OrderDetails order={order} /> : <p>regardes tes mails</p>}
-    </div>
+    </main>
   );
 }

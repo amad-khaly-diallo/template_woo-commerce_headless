@@ -1,3 +1,4 @@
+import "./index.css";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
@@ -149,86 +150,89 @@ export default function CheckoutForm() {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <h3>Adresse de livraison</h3>
-        <div>
-          <label>
-            Prénom
-            <input
-              name="first_name"
-              value={shippingAddress.first_name}
-              onChange={handleChangeShippingAddress}
-              required
-            />
-          </label>
+    <div className="checkout-form">
+      <form onSubmit={handleSubmit} className="checkout-form__form">
+        <div className="checkout-form__section">
+          <h3>Adresse de livraison</h3>
+          <div className="checkout-form__grid">
+            <label className="checkout-form__field">
+              <span>Prénom</span>
+              <input
+                name="first_name"
+                value={shippingAddress.first_name}
+                onChange={handleChangeShippingAddress}
+                required
+              />
+            </label>
 
-          <label>
-            Nom
-            <input
-              name="last_name"
-              value={shippingAddress.last_name}
-              onChange={handleChangeShippingAddress}
-              required
-            />
-          </label>
+            <label className="checkout-form__field">
+              <span>Nom</span>
+              <input
+                name="last_name"
+                value={shippingAddress.last_name}
+                onChange={handleChangeShippingAddress}
+                required
+              />
+            </label>
 
-          <label>
-            Adresse
-            <input
-              name="address_1"
-              value={shippingAddress.address_1}
-              onChange={handleChangeShippingAddress}
-              required
-            />
-          </label>
+            <label className="checkout-form__field checkout-form__field--full">
+              <span>Adresse</span>
+              <input
+                name="address_1"
+                value={shippingAddress.address_1}
+                onChange={handleChangeShippingAddress}
+                required
+              />
+            </label>
 
-          <label>
-            Ville
-            <input
-              name="city"
-              value={shippingAddress.city}
-              onChange={handleChangeShippingAddress}
-              required
-            />
-          </label>
+            <label className="checkout-form__field">
+              <span>Ville</span>
+              <input
+                name="city"
+                value={shippingAddress.city}
+                onChange={handleChangeShippingAddress}
+                required
+              />
+            </label>
 
-          <label>
-            Code postal
-            <input
-              name="postcode"
-              value={shippingAddress.postcode}
-              onChange={handleChangeShippingAddress}
-              required
-            />
-          </label>
+            <label className="checkout-form__field">
+              <span>Code postal</span>
+              <input
+                name="postcode"
+                value={shippingAddress.postcode}
+                onChange={handleChangeShippingAddress}
+                required
+              />
+            </label>
 
-          <label>
-            Pays
-            <input
-              name="country"
-              value={shippingAddress.country}
-              onChange={handleChangeShippingAddress}
-              required
-            />
-          </label>
+            <label className="checkout-form__field">
+              <span>Pays</span>
+              <input
+                name="country"
+                value={shippingAddress.country}
+                onChange={handleChangeShippingAddress}
+                required
+              />
+            </label>
+          </div>
 
-          <br />
-          <label>
+          <label className="checkout-form__checkbox">
             <input
               type="checkbox"
               id="sameAsBilling"
               checked={sameAsBilling}
               onChange={handleCheckboxChange}
             />
-            Livrer à la même adresse (facturation identique)
+            <span>Livrer à la même adresse (facturation identique)</span>
           </label>
+        </div>
 
-          {!sameAsBilling && (
-            <>
-              <h3>Adresse de facturation</h3>
-              <label>
-                Prénom
+        {!sameAsBilling && (
+          <div className="checkout-form__section">
+            <h3>Adresse de facturation</h3>
+            <div className="checkout-form__grid">
+              <label className="checkout-form__field">
+                <span>Prénom</span>
                 <input
                   name="first_name"
                   value={billingAddress.first_name}
@@ -237,8 +241,8 @@ export default function CheckoutForm() {
                 />
               </label>
 
-              <label>
-                Nom
+              <label className="checkout-form__field">
+                <span>Nom</span>
                 <input
                   name="last_name"
                   value={billingAddress.last_name}
@@ -247,8 +251,8 @@ export default function CheckoutForm() {
                 />
               </label>
 
-              <label>
-                Adresse
+              <label className="checkout-form__field checkout-form__field--full">
+                <span>Adresse</span>
                 <input
                   name="address_1"
                   value={billingAddress.address_1}
@@ -257,8 +261,8 @@ export default function CheckoutForm() {
                 />
               </label>
 
-              <label>
-                Ville
+              <label className="checkout-form__field">
+                <span>Ville</span>
                 <input
                   name="city"
                   value={billingAddress.city}
@@ -267,8 +271,8 @@ export default function CheckoutForm() {
                 />
               </label>
 
-              <label>
-                Code postal
+              <label className="checkout-form__field">
+                <span>Code postal</span>
                 <input
                   name="postcode"
                   value={billingAddress.postcode}
@@ -277,8 +281,8 @@ export default function CheckoutForm() {
                 />
               </label>
 
-              <label>
-                Pays
+              <label className="checkout-form__field">
+                <span>Pays</span>
                 <input
                   name="country"
                   value={billingAddress.country}
@@ -286,12 +290,13 @@ export default function CheckoutForm() {
                   required
                 />
               </label>
-            </>
-          )}
+            </div>
+          </div>
+        )}
 
-          <br />
-          <label>
-            Email
+        <div className="checkout-form__section">
+          <label className="checkout-form__field checkout-form__field--full">
+            <span>Email</span>
             <input
               name="email"
               type="email"
@@ -300,17 +305,36 @@ export default function CheckoutForm() {
               required
             />
           </label>
-
-          <div>
-            <CardElement />
-          </div>
-
-          <button type="submit" disabled={!stripe || loading}>
-            {loading ? "Traitement..." : "Payer maintenant"}
-          </button>
-
-          {error && <p>{error}</p>}
         </div>
+
+        <div className="checkout-form__section checkout-form__payment">
+          <h3>Paiement</h3>
+          <div className="strip">
+            <CardElement
+              options={{
+                style: {
+                  base: {
+                    fontSize: "16px",
+                    color: "#0f172a",
+                    fontFamily: "InterCustom, sans-serif",
+                    "::placeholder": { color: "#94a3b8" },
+                  },
+                  invalid: { color: "#dc2626" },
+                },
+              }}
+            />
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="checkout-form__submit"
+          disabled={!stripe || loading}
+        >
+          {loading ? "Traitement..." : "Payer maintenant"}
+        </button>
+
+        {error && <p className="checkout-form__error">{error}</p>}
       </form>
 
       {showGuestModal && (
@@ -319,6 +343,6 @@ export default function CheckoutForm() {
           onClose={() => setShowGuestModal(false)}
         />
       )}
-    </>
+    </div>
   );
 }

@@ -4,6 +4,8 @@ import { fetchBlogDataThunk } from "../../thunkActionsCreator/blogThunks";
 import Seo from "../../components/Seo";
 import { Link } from "react-router-dom";
 import Loader from "../Loader";
+import { decodeHtml } from "../../utils/decodeHtml";
+import "./index.css";
 
 function formatDate(value) {
   if (!value) return "";
@@ -50,50 +52,32 @@ export default function Blog() {
     );
   }, [activeCategory, posts]);
 
-  if (loading) {
-    return <Loader size="lg" />;
-  }
+  if (loading) return <Loader size="lg" />;
 
   if (error) {
-    return <div style={{ padding: 24 }}>{error}</div>;
+    return <div className="blog-error">{error}</div>;
   }
 
   return (
-    <div style={{ padding: 24, maxWidth: 1100, margin: "0 auto" }}>
+    <div className="blog-container">
       <Seo
         title="Blog"
         description="Découvrez nos derniers articles classés par catégorie."
       />
-      <h1 style={{ marginBottom: 8 }}>Blog</h1>
-      <p style={{ marginTop: 0, marginBottom: 24 }}>
+      <h1 className="blog-title">Blog</h1>
+      <p className="blog-description">
         Découvrez nos derniers articles classés par catégorie.
       </p>
 
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 10,
-          alignItems: "center",
-          marginBottom: 24,
-        }}
-      >
-        <label
-          htmlFor="blog-category-select"
-          style={{ fontWeight: 600, color: "#374151" }}
-        >
+      <div className="blog-filters">
+        <label htmlFor="blog-category-select" className="blog-filter-label">
           Catégorie :
         </label>
         <select
           id="blog-category-select"
           value={activeCategory}
           onChange={(event) => setActiveCategory(event.target.value)}
-          style={{
-            border: "1px solid #d1d5db",
-            borderRadius: 8,
-            padding: "8px 12px",
-            minWidth: 220,
-          }}
+          className="blog-filter-select"
         >
           <option value="all">Toutes les catégories</option>
           {categories.map((category) => (
@@ -105,36 +89,30 @@ export default function Blog() {
       </div>
 
       {filteredPosts.length === 0 ? (
-        <p>Aucun article disponible pour le moment.</p>
+        <p className="blog-empty">Aucun article disponible pour le moment.</p>
       ) : (
-        <div style={{ display: "grid", gap: 16 }}>
-  {filteredPosts.map((post) => (
-    <Link
-      to={`/blog/${post.slug}`}
-      key={post.id}
-      style={{ textDecoration: "none", color: "inherit" }}
-    >
-      <article style={{ border: "1px solid #e5e5e5", padding: 16, borderRadius: 8 }}>
-        <h3 style={{ marginTop: 0, marginBottom: 8 }}>
-          {post.titleText || "Sans titre"}
-        </h3>
-        <p style={{ margin: "4px 0", color: "#666", fontSize: 14 }}>
-          {formatDate(post.date)}
-        </p>
-        <p style={{ margin: "8px 0 12px", lineHeight: 1.6 }}>
-          {post.excerptText || "Lire l'article complet sur le site WordPress."}
-        </p>
-      </article>
-    </Link>
-  ))}
-</div>
+        <div className="blog-posts-grid">
+          {filteredPosts.map((post) => (
+            <Link to={`/blog/${post.slug}`} key={post.id} className="blog-link">
+              <article className="blog-article">
+                <h3 className="blog-article-title">
+                  {post.titleText ? decodeHtml(post.titleText) : "Sans titre"}
+                </h3>
+                <p className="blog-article-date">{formatDate(post.date)}</p>
+                <p className="blog-article-excerpt">
+                  {post.excerptText
+                    ? decodeHtml(post.excerptText)
+                    : "Lire l'article complet."}
+                </p>
+              </article>
+            </Link>
+          ))}
+        </div>
       )}
 
-      {loadingMore && (
-        <Loader size="lg" />
-      )}
+      {loadingMore && <Loader size="lg" />}
       {!hasMore && !loading && (
-        <p style={{ marginTop: 20 }}>Tous les articles ont été chargés.</p>
+        <p className="blog-end-message">Tous les articles ont été chargés.</p>
       )}
     </div>
   );

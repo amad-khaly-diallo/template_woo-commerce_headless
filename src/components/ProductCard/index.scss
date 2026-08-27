@@ -1,56 +1,104 @@
 .product-card {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--primary-color);
-  border-radius: 8px;
+  border: 1px solid var(--dark-color);
   box-shadow: 0 2px 4px rgba(40, 68, 193, 0.1);
   transition: transform 0.2s ease-in-out;
-  //margin: 5vw;
-  width: 100%;
+  width: 18%;
   overflow: hidden;
-  padding: 0.5rem;
   position: relative;
+  height: 28vw;
+
   .wishlist-button {
     position: absolute;
     top: 0.5lvh;
     right: 0.5lvh;
     z-index: 1;
   }
+
   .product-link {
-    h4 {
-      margin-right: 5lvh;
-    }
     display: flex;
     flex-direction: column;
+    height: 16vw;
+
+    h4 {
+      margin-right: 3lvh;
+      margin-left: 1lvh;
+      margin-bottom: 0;
+      /* For text clamping */
+      word-break: normal;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+
+    .brand-title {
+      /* color: var(--primary-color); */
+      margin-left: 1lvh;
+      margin-bottom: 0;
+      font-weight: bolder;
+      font-style: italic;
+    }
+
     img {
-      max-width: 100%;
-      height: 30vw;
+      width: 100%;
+      height: 12vw;
       object-fit: cover;
       margin: auto;
     }
   }
+
   .description {
     display: flex;
     flex-direction: row;
-    margin-top: 3lvh;
+    margin-left: 1lvh;
+    margin-right: 1lvh;
+    margin-top: 1vw;
+    height: 8vw;
+
     span {
       width: 50%;
+      margin-left: 1px;
+
       div {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+    }
+
+    select {
+      padding: 0.2lvh;
+    }
+
+    .stock-status {
+      font-size: 1.3vw;
+
+      &-available {
+        color: var(--success-color);
+      }
+
+      &-unavailable {
+        color: var(--danger-color);
       }
     }
   }
+
   button {
+    height: 2.5vw;
+    width: 90%;
     margin: auto;
+    margin-bottom: 0.5vw;
   }
+
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(77, 107, 218, 0.534);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px var(--primary-color);
   }
+
   @media screen and (aspect-ratio > 1/1) {
-    width: 30%;
+    /*   width: 30%; */
     margin: 0.8%;
     margin-top: 5vw;
   }

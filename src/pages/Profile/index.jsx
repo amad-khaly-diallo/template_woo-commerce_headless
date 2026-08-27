@@ -16,11 +16,11 @@ export default function Profile() {
   const navigate = useNavigate();
   if (isAuthentificated) {
     return (
-      <div className="test">
+      <main>
         <UserDisplay />
         <OrderAll />
         <DeleteAccountButton />
-      </div>
+      </main>
     );
   }
 }
